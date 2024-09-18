@@ -1,0 +1,9 @@
+MariaDB 10.5 or later is required:
+1) Export all databases you wish to keep
+2) update mariaDB to use with xampp. https://www.youtube.com/watch?v=-GmyjYEfuzE&ab_channel=DecorZone
+3) import databases: http://www.facweb.iitkgp.ac.in/dashboard/docs/backup-restore-mysql.html
+
+What I'm using:
+1) Python environment (created via miniconda) with python 3.12
+2) Updated MariaDB to version 10.5.26 (xampp latest version comes with MariaDB 10.4; Upgrade with the above steps)
+3) Pycharm Professional (Jetbrains Student Licence)
