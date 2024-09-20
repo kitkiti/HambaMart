@@ -7,21 +7,32 @@ class Customer(models.Model):
     FName = models.CharField(max_length=255)
     MName = models.CharField(max_length=255, blank=True, null=True)
     LName = models.CharField(max_length=255)
-    Address = models.TextField()
+    Address = models.TextField(blank=True, null=True)
     Phone = models.CharField(max_length=20)
-    Email = models.EmailField(unique=True)
+    Email = models.EmailField(db_column='Email', unique=True)
     Password = models.CharField(max_length=255)
+
+    class Meta:
+        managed = False
+        db_table = 'customer'
 
 class Cart(models.Model):
     Cart_ID = models.AutoField(primary_key=True)
     CustomerID = models.ForeignKey(Customer, on_delete=models.CASCADE)
+
     class Meta:
-        unique_together = (('CustomerID', 'Cart_ID'),)
+        managed = False
+        db_table = 'cart'
+        unique_together = (('Cart_ID', 'CustomerID'),)
 
 class CartProduct(models.Model):
+    id = models.AutoField(primary_key=True)
     Product_ID = models.ForeignKey(Product, on_delete=models.CASCADE)
     CustomerID = models.ForeignKey(Customer, on_delete=models.CASCADE)
     Cart_ID = models.ForeignKey(Cart, on_delete=models.CASCADE)
-    Quantity = models.IntegerField()
+    Quantity = models.IntegerField(blank=True, null=True)
+
     class Meta:
+        managed = False
+        db_table = 'cart_product'
         unique_together = (('Product_ID', 'CustomerID', 'Cart_ID'),)

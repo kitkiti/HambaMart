@@ -10,16 +10,28 @@ class Orders(models.Model):
     Address = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
 
+    class Meta:
+        managed = False
+        db_table = 'orders'
+
 class OrderProduct(models.Model):
-    Product_ID = models.ForeignKey(Product, on_delete=models.CASCADE)
+    id = models.AutoField(primary_key=True)
+    Product_ID = models.ForeignKey(Product, on_delete=models.RESTRICT)
     Order_ID = models.ForeignKey(Orders, on_delete=models.CASCADE)
     product_quantity = models.IntegerField()
+
     class Meta:
+        managed = False
+        db_table = 'order_product'
         unique_together = (('Product_ID', 'Order_ID'),)
 
 class Payment(models.Model):
     P_ID = models.AutoField(primary_key=True)
-    CustomerID = models.ForeignKey(Customer, on_delete=models.CASCADE)
-    Order_ID = models.ForeignKey(Orders, on_delete=models.CASCADE)
+    CustomerID = models.ForeignKey(Customer, on_delete=models.SET_NULL, null=True)
+    Order_ID = models.ForeignKey(Orders, on_delete=models.SET_NULL, null=True)
     Amount = models.DecimalField(max_digits=10, decimal_places=2)
-    Method = models.CharField(max_length=50)
+    Method = models.CharField(max_length=50, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'payment'
