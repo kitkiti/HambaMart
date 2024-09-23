@@ -1,0 +1,62 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Base{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'styles/base.css' %}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    {%  block extra_css  %} {% endblock %}
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <a href="{% url 'home' %}"><img src="{% static 'img/logo.png' %}" alt="Logo"></a>
+        </div>
+        <div class="search-bar">
+            <input type="text" placeholder="Search...">
+            <button type="submit"><img src="{% static 'img/magnifying-glass-icon.png' %}" alt="Search"></button>
+        </div>
+        <div class="user-options">
+            {% if user.is_authenticated %}
+                {% if user.is_admin %}
+                    <div class="user-greeting dropdown">
+                        <span class="dropdown-toggle" data-toggle="dropdown">Hello, Admin {{ user.AdminID }}</span>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="{% url 'admin_dashboard' %}">Admin Dashboard</a>
+                            <a class="dropdown-item" href="{% url 'logout' %}">Log Out</a>
+                        </div>
+                    </div>
+                {% else %}
+                    <div class="user-greeting dropdown">
+                        <span class="dropdown-toggle" data-toggle="dropdown">Hello, {{ user.FName }}</span>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="{% url 'account' %}">Manage My Account</a>
+                            <! -- <a class="dropdown-item" href="{% url 'orders' %}">My Orders</a> --> 
+                            <a class="dropdown-item" href="{% url 'logout' %}">Log Out</a>
+                        </div>
+                    </div>
+                {% endif %}
+            {% else %}
+                <div class="auth-buttons">
+                    <a href="{% url 'login' %}"><button id="login">LOGIN</button></a>
+                    <a href="{% url 'signup' %}"><button id="signup">SIGN UP</button></a>
+                </div>
+            {% endif %}
+            <div class="cart-icon">
+                <a href="{% url 'cart' %}"><img src="{% static 'img/cart-icon.png' %}" alt="Cart"></a>
+            </div>
+        </div>
+    </header>
+    <main>
+        {% block content %} {% endblock %}
+    </main>
+    <footer>
+        <p>© 2024 Hambamart Online Store. All rights reserved.</p>
+    </footer>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
