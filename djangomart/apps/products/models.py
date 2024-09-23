@@ -20,7 +20,6 @@ class AdminManager(BaseUserManager):
 class Admin(AbstractBaseUser, PermissionsMixin):
     AdminID = models.AutoField(primary_key=True)
     Name = models.CharField(max_length=255, blank=True, null=True)
-    Password = models.CharField(max_length=255)
     Email = models.EmailField(unique=True, max_length=254)
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)

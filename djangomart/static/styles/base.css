@@ -102,7 +102,7 @@ header {
 
 /* Main content */
 main {
-    padding-top: 200px; /* Ensure main content is below the fixed header */
+    padding-top: 120px;
 }
 
 /* Footer */

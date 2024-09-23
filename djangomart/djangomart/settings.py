@@ -80,7 +80,7 @@ WSGI_APPLICATION = 'djangomart.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'hambamartdb',
+        'NAME': 'test1',
         'USER': 'root',
         'PASSWORD': '',
         'HOST': 'localhost',

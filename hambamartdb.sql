@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 20, 2024 at 05:11 AM
+-- Generation Time: Sep 23, 2024 at 10:37 AM
 -- Server version: 10.5.26-MariaDB
 -- PHP Version: 8.2.12
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `hambamartdb`
+-- Database: `test1`
 --
 
 -- --------------------------------------------------------
@@ -30,18 +30,46 @@ SET time_zone = "+00:00";
 CREATE TABLE `admin` (
   `AdminID` int(11) NOT NULL,
   `Name` varchar(255) DEFAULT NULL,
-  `Password` varchar(255) NOT NULL,
-  `Email` varchar(255) NOT NULL
+  `Email` varchar(255) NOT NULL,
+  `is_active` tinyint(1) NOT NULL,
+  `is_staff` tinyint(1) NOT NULL,
+  `is_superuser` tinyint(1) NOT NULL,
+  `last_login` datetime(6) DEFAULT NULL,
+  `password` varchar(128) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `admin`
 --
 
-INSERT INTO `admin` (`AdminID`, `Name`, `Password`, `Email`) VALUES
-(1, 'Tasfia Zaman', 'kitkiti', 'tasfia.zaman@g.bracu.ac.bd'),
-(2, 'Al Irfan Alve', 'AcinAces', 'al.irfan.alve@g.bracu.ac.bd'),
-(3, 'Md. Rezaur Rahman Bhuiyan', 'killerexcipio', 'rezaur.rahman.bhuiyan@g.bracu.ac.bd');
+INSERT INTO `admin` (`AdminID`, `Name`, `Email`, `is_active`, `is_staff`, `is_superuser`, `last_login`, `password`) VALUES
+(1, 'Tasfia Zaman', 'tasfia.zaman@g.bracu.ac.bd', 1, 0, 0, NULL, 'pbkdf2_sha256$870000$x2j7C5hkagLJ8Smz5uL8Go$gssmHwqDiBDq/iPcvi9nGd/EA5q4NlZZALhNIquarrY='),
+(2, 'Al Irfan Alve', 'al.irfan.alve@g.bracu.ac.bd', 1, 0, 0, NULL, 'pbkdf2_sha256$870000$ouvJ8qyvQ6beypgXa5hqVV$2ThZY/vzjF9S9b96Y+aqtDkoiRrm2EBGONCWDXhK6EU='),
+(3, 'Md. Rezaur Rahman Bhuiyan', 'rezaur.rahman.bhuiyan@g.bracu.ac.bd', 1, 0, 0, NULL, 'pbkdf2_sha256$870000$L1n7JC4Q3fSpdzTWswL9TU$taY2PMQn80rfmRPaLFeW2pt/htSaDOq/g9mhZ2WngoE=');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `admin_groups`
+--
+
+CREATE TABLE `admin_groups` (
+  `id` bigint(20) NOT NULL,
+  `admin_id` int(11) NOT NULL,
+  `group_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `admin_user_permissions`
+--
+
+CREATE TABLE `admin_user_permissions` (
+  `id` bigint(20) NOT NULL,
+  `admin_id` int(11) NOT NULL,
+  `permission_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -227,7 +255,42 @@ CREATE TABLE `customer` (
   `Address` text DEFAULT NULL,
   `Phone` varchar(20) NOT NULL,
   `Email` varchar(255) NOT NULL,
-  `Password` varchar(255) NOT NULL
+  `is_active` tinyint(1) NOT NULL,
+  `is_staff` tinyint(1) NOT NULL,
+  `is_superuser` tinyint(1) NOT NULL,
+  `last_login` datetime(6) DEFAULT NULL,
+  `password` varchar(128) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `customer`
+--
+
+INSERT INTO `customer` (`CustomerID`, `FName`, `MName`, `LName`, `Address`, `Phone`, `Email`, `is_active`, `is_staff`, `is_superuser`, `last_login`, `password`) VALUES
+(1, 'Adrita', NULL, 'Zaman', NULL, '01521735832', 'adrita.03.zaman@gmail.com', 1, 0, 0, '2024-09-23 08:35:27.191023', 'pbkdf2_sha256$870000$UQf8cXD6RLJoODwIXrZsFM$Ds1AMYwiJA9LOPVzoPH+aO1+yMy4taEV8iZPAkDM6XA=');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `customer_groups`
+--
+
+CREATE TABLE `customer_groups` (
+  `id` bigint(20) NOT NULL,
+  `customer_id` int(11) NOT NULL,
+  `group_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `customer_user_permissions`
+--
+
+CREATE TABLE `customer_user_permissions` (
+  `id` bigint(20) NOT NULL,
+  `customer_id` int(11) NOT NULL,
+  `permission_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -298,27 +361,37 @@ CREATE TABLE `django_migrations` (
 --
 
 INSERT INTO `django_migrations` (`id`, `app`, `name`, `applied`) VALUES
-(1, 'contenttypes', '0001_initial', '2024-09-20 03:09:47.104565'),
-(2, 'auth', '0001_initial', '2024-09-20 03:09:47.380528'),
-(3, 'admin', '0001_initial', '2024-09-20 03:09:47.450529'),
-(4, 'admin', '0002_logentry_remove_auto_add', '2024-09-20 03:09:47.458528'),
-(5, 'admin', '0003_logentry_add_action_flag_choices', '2024-09-20 03:09:47.485530'),
-(6, 'contenttypes', '0002_remove_content_type_name', '2024-09-20 03:09:47.547735'),
-(7, 'auth', '0002_alter_permission_name_max_length', '2024-09-20 03:09:47.577103'),
-(8, 'auth', '0003_alter_user_email_max_length', '2024-09-20 03:09:47.594094'),
-(9, 'auth', '0004_alter_user_username_opts', '2024-09-20 03:09:47.606095'),
-(10, 'auth', '0005_alter_user_last_login_null', '2024-09-20 03:09:47.646034'),
-(11, 'auth', '0006_require_contenttypes_0002', '2024-09-20 03:09:47.649037'),
-(12, 'auth', '0007_alter_validators_add_error_messages', '2024-09-20 03:09:47.661036'),
-(13, 'auth', '0008_alter_user_username_max_length', '2024-09-20 03:09:47.679037'),
-(14, 'auth', '0009_alter_user_last_name_max_length', '2024-09-20 03:09:47.693038'),
-(15, 'auth', '0010_alter_group_name_max_length', '2024-09-20 03:09:47.716033'),
-(16, 'auth', '0011_update_proxy_permissions', '2024-09-20 03:09:47.732035'),
-(17, 'auth', '0012_alter_user_first_name_max_length', '2024-09-20 03:09:47.746193'),
-(18, 'customers', '0001_initial', '2024-09-20 03:09:47.751219'),
-(19, 'orders', '0001_initial', '2024-09-20 03:09:47.755217'),
-(20, 'products', '0001_initial', '2024-09-20 03:09:47.760610'),
-(21, 'sessions', '0001_initial', '2024-09-20 03:09:47.777508');
+(1, 'contenttypes', '0001_initial', '2024-09-20 02:59:46.540905'),
+(2, 'auth', '0001_initial', '2024-09-20 02:59:46.916303'),
+(3, 'admin', '0001_initial', '2024-09-20 02:59:46.993346'),
+(4, 'admin', '0002_logentry_remove_auto_add', '2024-09-20 02:59:47.009305'),
+(5, 'admin', '0003_logentry_add_action_flag_choices', '2024-09-20 02:59:47.053303'),
+(6, 'contenttypes', '0002_remove_content_type_name', '2024-09-20 02:59:47.111303'),
+(7, 'auth', '0002_alter_permission_name_max_length', '2024-09-20 02:59:47.148312'),
+(8, 'auth', '0003_alter_user_email_max_length', '2024-09-20 02:59:47.167307'),
+(9, 'auth', '0004_alter_user_username_opts', '2024-09-20 02:59:47.180308'),
+(10, 'auth', '0005_alter_user_last_login_null', '2024-09-20 02:59:47.220305'),
+(11, 'auth', '0006_require_contenttypes_0002', '2024-09-20 02:59:47.222305'),
+(12, 'auth', '0007_alter_validators_add_error_messages', '2024-09-20 02:59:47.234302'),
+(13, 'auth', '0008_alter_user_username_max_length', '2024-09-20 02:59:47.253303'),
+(14, 'auth', '0009_alter_user_last_name_max_length', '2024-09-20 02:59:47.268313'),
+(15, 'auth', '0010_alter_group_name_max_length', '2024-09-20 02:59:47.282304'),
+(16, 'auth', '0011_update_proxy_permissions', '2024-09-20 02:59:47.292302'),
+(17, 'auth', '0012_alter_user_first_name_max_length', '2024-09-20 02:59:47.305303'),
+(18, 'customers', '0001_initial', '2024-09-20 02:59:47.310304'),
+(19, 'orders', '0001_initial', '2024-09-20 02:59:47.314307'),
+(20, 'products', '0001_initial', '2024-09-20 02:59:47.319302'),
+(21, 'sessions', '0001_initial', '2024-09-20 02:59:47.336547'),
+(22, 'customers', '0002_alter_customer_options', '2024-09-23 01:34:45.617606'),
+(23, 'products', '0002_alter_admin_options', '2024-09-23 01:34:45.631471'),
+(24, 'customers', '0003_customer_groups_customer_is_active_customer_is_staff_and_more', '2024-09-23 06:16:39.713363'),
+(25, 'products', '0003_admin_groups_admin_is_active_admin_is_staff_and_more', '2024-09-23 06:16:39.968788'),
+(26, 'customers', '0004_remove_customer_password', '2024-09-23 07:16:13.580675'),
+(27, 'products', '0004_remove_admin_password', '2024-09-23 07:16:27.880734'),
+(28, 'customers', '0005_alter_customer_password', '2024-09-23 07:26:28.417598'),
+(29, 'products', '0005_alter_admin_password', '2024-09-23 07:26:28.434778'),
+(30, 'customers', '0006_alter_customer_password', '2024-09-23 07:38:39.138235'),
+(31, 'products', '0006_alter_admin_password', '2024-09-23 07:38:39.153797');
 
 -- --------------------------------------------------------
 
@@ -331,6 +404,13 @@ CREATE TABLE `django_session` (
   `session_data` longtext NOT NULL,
   `expire_date` datetime(6) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `django_session`
+--
+
+INSERT INTO `django_session` (`session_key`, `session_data`, `expire_date`) VALUES
+('2bxrr63vy47qmavwbjiae5v87785iha8', '.eJxVi8sOwiAQRf-FtWnakcfg0n4IGQYQNW0TKCvjv4tJF7q6ybnnvISjtmfXaizuHsRFTOL0yzzxM67fIzxovW0LlX04YB3mVvdtieV6WH9pppp7pxMZsJwAGQNGg1JNPEoiL_uCijYm1AEkgBk9s9WpJ2wTnVEZMuL9AZvJNlw:1sseUR:wceaWr6hjw-_lXG6_03TsA2qxtjTsPZuz3YoInooASU', '2024-10-07 08:32:15.365919');
 
 -- --------------------------------------------------------
 
@@ -411,6 +491,22 @@ ALTER TABLE `admin`
   ADD UNIQUE KEY `Email` (`Email`);
 
 --
+-- Indexes for table `admin_groups`
+--
+ALTER TABLE `admin_groups`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `admin_groups_admin_id_group_id_e89f9ce4_uniq` (`admin_id`,`group_id`),
+  ADD KEY `admin_groups_group_id_d2f1d5d5_fk_auth_group_id` (`group_id`);
+
+--
+-- Indexes for table `admin_user_permissions`
+--
+ALTER TABLE `admin_user_permissions`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `admin_user_permissions_admin_id_permission_id_484ee295_uniq` (`admin_id`,`permission_id`),
+  ADD KEY `admin_user_permissio_permission_id_a515643a_fk_auth_perm` (`permission_id`);
+
+--
 -- Indexes for table `auth_group`
 --
 ALTER TABLE `auth_group`
@@ -476,6 +572,22 @@ ALTER TABLE `cart_product`
 ALTER TABLE `customer`
   ADD PRIMARY KEY (`CustomerID`),
   ADD UNIQUE KEY `Email` (`Email`);
+
+--
+-- Indexes for table `customer_groups`
+--
+ALTER TABLE `customer_groups`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `customer_groups_customer_id_group_id_95d0ab85_uniq` (`customer_id`,`group_id`),
+  ADD KEY `customer_groups_group_id_902232a5_fk_auth_group_id` (`group_id`);
+
+--
+-- Indexes for table `customer_user_permissions`
+--
+ALTER TABLE `customer_user_permissions`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `customer_user_permission_customer_id_permission_i_be5423b4_uniq` (`customer_id`,`permission_id`),
+  ADD KEY `customer_user_permis_permission_id_2c3e834e_fk_auth_perm` (`permission_id`);
 
 --
 -- Indexes for table `django_admin_log`
@@ -550,6 +662,18 @@ ALTER TABLE `admin`
   MODIFY `AdminID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
+-- AUTO_INCREMENT for table `admin_groups`
+--
+ALTER TABLE `admin_groups`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `admin_user_permissions`
+--
+ALTER TABLE `admin_user_permissions`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `auth_group`
 --
 ALTER TABLE `auth_group`
@@ -595,7 +719,19 @@ ALTER TABLE `cart`
 -- AUTO_INCREMENT for table `customer`
 --
 ALTER TABLE `customer`
-  MODIFY `CustomerID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `CustomerID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `customer_groups`
+--
+ALTER TABLE `customer_groups`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `customer_user_permissions`
+--
+ALTER TABLE `customer_user_permissions`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `django_admin_log`
@@ -613,7 +749,7 @@ ALTER TABLE `django_content_type`
 -- AUTO_INCREMENT for table `django_migrations`
 --
 ALTER TABLE `django_migrations`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT for table `orders`
@@ -636,6 +772,20 @@ ALTER TABLE `product`
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `admin_groups`
+--
+ALTER TABLE `admin_groups`
+  ADD CONSTRAINT `admin_groups_admin_id_79611eb0_fk_admin_AdminID` FOREIGN KEY (`admin_id`) REFERENCES `admin` (`AdminID`),
+  ADD CONSTRAINT `admin_groups_group_id_d2f1d5d5_fk_auth_group_id` FOREIGN KEY (`group_id`) REFERENCES `auth_group` (`id`);
+
+--
+-- Constraints for table `admin_user_permissions`
+--
+ALTER TABLE `admin_user_permissions`
+  ADD CONSTRAINT `admin_user_permissio_permission_id_a515643a_fk_auth_perm` FOREIGN KEY (`permission_id`) REFERENCES `auth_permission` (`id`),
+  ADD CONSTRAINT `admin_user_permissions_admin_id_cbffc929_fk_admin_AdminID` FOREIGN KEY (`admin_id`) REFERENCES `admin` (`AdminID`);
 
 --
 -- Constraints for table `auth_group_permissions`
@@ -677,6 +827,20 @@ ALTER TABLE `cart_product`
   ADD CONSTRAINT `cart_product_ibfk_1` FOREIGN KEY (`Product_ID`) REFERENCES `product` (`Product_ID`) ON DELETE CASCADE,
   ADD CONSTRAINT `cart_product_ibfk_2` FOREIGN KEY (`CustomerID`) REFERENCES `customer` (`CustomerID`) ON DELETE CASCADE,
   ADD CONSTRAINT `cart_product_ibfk_3` FOREIGN KEY (`Cart_ID`) REFERENCES `cart` (`Cart_ID`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `customer_groups`
+--
+ALTER TABLE `customer_groups`
+  ADD CONSTRAINT `customer_groups_customer_id_db50a81a_fk_customer_CustomerID` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`CustomerID`),
+  ADD CONSTRAINT `customer_groups_group_id_902232a5_fk_auth_group_id` FOREIGN KEY (`group_id`) REFERENCES `auth_group` (`id`);
+
+--
+-- Constraints for table `customer_user_permissions`
+--
+ALTER TABLE `customer_user_permissions`
+  ADD CONSTRAINT `customer_user_permis_customer_id_26a7437e_fk_customer_` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`CustomerID`),
+  ADD CONSTRAINT `customer_user_permis_permission_id_2c3e834e_fk_auth_perm` FOREIGN KEY (`permission_id`) REFERENCES `auth_permission` (`id`);
 
 --
 -- Constraints for table `django_admin_log`
