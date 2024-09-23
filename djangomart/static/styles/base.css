@@ -1,8 +1,10 @@
+/* Base styles */
 body {
     margin: 0;
     font-family: Arial, sans-serif;
 }
 
+/* Header */
 header {
     display: flex;
     justify-content: space-between;
@@ -16,10 +18,12 @@ header {
     z-index: 1000;
 }
 
+/* Logo */
 .logo img {
     height: 40px;
 }
 
+/* Search bar */
 .search-bar {
     display: flex;
     align-items: center;
@@ -41,6 +45,7 @@ header {
     height: 20px;
 }
 
+/* User options */
 .user-options {
     display: flex;
     align-items: center;
@@ -65,6 +70,7 @@ header {
     cursor: pointer;
 }
 
+/* Dropdown menu */
 .dropdown-menu {
     display: none;
     position: absolute;
@@ -89,14 +95,17 @@ header {
     display: block;
 }
 
+/* Cart icon */
 .cart-icon img {
     height: 30px;
 }
 
+/* Main content */
 main {
-    padding-top: 80px; /* To ensure content is not hidden behind the fixed header */
+    padding-top: 200px; /* Ensure main content is below the fixed header */
 }
 
+/* Footer */
 footer {
     background-color: #333;
     color: white;
