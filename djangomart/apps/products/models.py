@@ -22,7 +22,7 @@ class Admin(AbstractBaseUser, PermissionsMixin):
     Name = models.CharField(max_length=255, blank=True, null=True)
     Email = models.EmailField(unique=True, max_length=254)
     is_active = models.BooleanField(default=True)
-    is_staff = models.BooleanField(default=False)
+    is_staff = models.BooleanField(default=True)
 
     groups = models.ManyToManyField(
         'auth.Group',
