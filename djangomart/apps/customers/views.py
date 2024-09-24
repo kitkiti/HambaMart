@@ -1,35 +1,33 @@
-from django.shortcuts import render,redirect
-from django.contrib.auth import login, logout
-from .models import Customer
+from django.shortcuts import render, redirect
+from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib import messages
-from djangomart.backends import CustomerBackend, AdminBackend
+from apps.customers.models import Customer  # Import your Customer model
+from apps.products.models import Admin  # Import your Admin model
 
-
-# Create your views here.
 
 def custom_login_view(request):
     if request.method == 'POST':
         form = AuthenticationForm(request, data=request.POST)
         if form.is_valid():
-            email = form.cleaned_data.get('username')
+            username = form.cleaned_data.get('username')
             password = form.cleaned_data.get('password')
 
-            # Try to authenticate as Customer
-            customer_user = CustomerBackend().authenticate(request, email=email, password=password)
-            if customer_user is not None:
-                login(request, customer_user, backend='djangomart.backends.CustomerBackend')
-                return redirect('home')  # Redirect to customer dashboard
+            user = authenticate(request, username=username, password=password)
 
-            # Try to authenticate as Admin
-            admin_user = AdminBackend().authenticate(request, email=email, password=password)
-            if admin_user is not None:
-                login(request, admin_user, backend='djangomart.backends.AdminBackend')
-                return redirect('admin_dashboard')  # Redirect to admin dashboard
+            if user is not None:
+                login(request, user)
 
-            messages.error(request, 'Invalid email or password.')
+                if isinstance(user, Customer):
+                    return redirect('home')  # Redirect to customer's home
+                elif isinstance(user, Admin):
+                    return redirect('admin_dashboard')  # Redirect to admin's dashboard
+
+            else:
+                messages.error(request, 'Invalid email or password.')
     else:
         form = AuthenticationForm()
+
     return render(request, 'login.html', {'form': form})
 
 def signup_view(request):

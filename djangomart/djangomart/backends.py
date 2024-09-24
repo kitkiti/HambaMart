@@ -5,9 +5,9 @@ from apps.customers.models import Customer
 from apps.products.models import Admin
 
 class CustomerBackend(BaseBackend):
-    def authenticate(self, request, email=None, password=None):
+    def authenticate(self, request, username=None, password=None):
         try:
-            customer = Customer.objects.get(Email=email)
+            customer = Customer.objects.get(Email=username)
             if customer.check_password(password):
                 return customer
         except Customer.DoesNotExist:
@@ -20,9 +20,9 @@ class CustomerBackend(BaseBackend):
             return None
 
 class AdminBackend(BaseBackend):
-    def authenticate(self, request, email=None, password=None):
+    def authenticate(self, request, username=None, password=None):
         try:
-            admin = Admin.objects.get(Email=email)
+            admin = Admin.objects.get(Email=username)
             if admin.check_password(password):
                 return admin
         except Admin.DoesNotExist:
