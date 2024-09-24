@@ -31,5 +31,6 @@ urlpatterns = [
     path('admin_dashboard/', pviews.admin_view, name='admin_dashboard'),
     path('logout/', cviews.logout_view, name='logout'),
     path('cart/', cviews.cart_view, name='cart'),
+    path('product/<int:product_id>/', pviews.product_details_view, name='product_details'),
 
 ]

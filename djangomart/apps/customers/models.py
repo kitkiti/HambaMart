@@ -57,7 +57,7 @@ class Customer(AbstractBaseUser, PermissionsMixin):
 
 class Cart(models.Model):
     Cart_ID = models.AutoField(primary_key=True)
-    CustomerID = models.ForeignKey(Customer, on_delete=models.CASCADE)
+    CustomerID = models.ForeignKey(Customer, on_delete=models.CASCADE, db_column='CustomerID')
 
     class Meta:
         managed = False
@@ -66,9 +66,9 @@ class Cart(models.Model):
 
 class CartProduct(models.Model):
     id = models.AutoField(primary_key=True)
-    Product_ID = models.ForeignKey(Product, on_delete=models.CASCADE)
-    CustomerID = models.ForeignKey(Customer, on_delete=models.CASCADE)
-    Cart_ID = models.ForeignKey(Cart, on_delete=models.CASCADE)
+    Product_ID = models.ForeignKey(Product, on_delete=models.CASCADE, db_column='ProductID')
+    CustomerID = models.ForeignKey(Customer, on_delete=models.CASCADE, db_column='CustomerID')
+    Cart_ID = models.ForeignKey(Cart, on_delete=models.CASCADE, db_column='CartID')
     Quantity = models.IntegerField(blank=True, null=True)
 
     class Meta:

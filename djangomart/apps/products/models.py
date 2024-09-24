@@ -54,15 +54,20 @@ class Product(models.Model):
     Stock = models.IntegerField(blank=True, null=True)
     Price = models.DecimalField(max_digits=10, decimal_places=2)
     product_img = models.CharField(max_length=255, blank=True, null=True, default='https://linklog.com/wp-content/uploads/2023/08/no-image.jpg')
-    AdminID = models.ForeignKey(Admin, on_delete=models.SET_NULL, blank=True, null=True)
+    AdminID = models.ForeignKey(Admin, on_delete=models.SET_NULL, blank=True, null=True, db_column='AdminID')
 
     class Meta:
         managed = False
         db_table = 'product'
 
+    @property
+    def tags(self):
+        return ProductTags.objects.filter(Product_ID=self)
+
+
 class ProductTags(models.Model):
     id = models.AutoField(primary_key=True)
-    Product_ID = models.ForeignKey(Product, on_delete=models.CASCADE)
+    Product_ID = models.ForeignKey(Product, on_delete=models.CASCADE, db_column='Product_ID')
     Tag = models.CharField(max_length=255)
 
     class Meta:

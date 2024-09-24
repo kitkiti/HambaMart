@@ -16,8 +16,8 @@ class Orders(models.Model):
 
 class OrderProduct(models.Model):
     id = models.AutoField(primary_key=True)
-    Product_ID = models.ForeignKey(Product, on_delete=models.RESTRICT)
-    Order_ID = models.ForeignKey(Orders, on_delete=models.CASCADE)
+    Product_ID = models.ForeignKey(Product, on_delete=models.RESTRICT, db_column='Product_ID')
+    Order_ID = models.ForeignKey(Orders, on_delete=models.CASCADE, db_column='Order_ID' )
     product_quantity = models.IntegerField()
 
     class Meta:
@@ -27,8 +27,8 @@ class OrderProduct(models.Model):
 
 class Payment(models.Model):
     P_ID = models.AutoField(primary_key=True)
-    CustomerID = models.ForeignKey(Customer, on_delete=models.SET_NULL, null=True)
-    Order_ID = models.ForeignKey(Orders, on_delete=models.SET_NULL, null=True)
+    CustomerID = models.ForeignKey(Customer, on_delete=models.SET_NULL, null=True, db_column='CustomerID')
+    Order_ID = models.ForeignKey(Orders, on_delete=models.SET_NULL, null=True, db_column='Order_ID')
     Amount = models.DecimalField(max_digits=10, decimal_places=2)
     Method = models.CharField(max_length=50, blank=True, null=True)
 
