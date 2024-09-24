@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 24, 2024 at 12:44 PM
+-- Generation Time: Sep 25, 2024 at 01:15 AM
 -- Server version: 10.5.26-MariaDB
 -- PHP Version: 8.2.12
 
@@ -43,7 +43,7 @@ CREATE TABLE `admin` (
 --
 
 INSERT INTO `admin` (`AdminID`, `Name`, `Email`, `is_active`, `is_staff`, `is_superuser`, `last_login`, `password`) VALUES
-(1, 'Tasfia Zaman', 'tasfia.zaman@g.bracu.ac.bd', 1, 1, 1, '2024-09-24 10:41:35.619296', 'pbkdf2_sha256$870000$x2j7C5hkagLJ8Smz5uL8Go$gssmHwqDiBDq/iPcvi9nGd/EA5q4NlZZALhNIquarrY='),
+(1, 'Tasfia Zaman', 'tasfia.zaman@g.bracu.ac.bd', 1, 1, 1, '2024-09-24 20:32:19.570376', 'pbkdf2_sha256$870000$x2j7C5hkagLJ8Smz5uL8Go$gssmHwqDiBDq/iPcvi9nGd/EA5q4NlZZALhNIquarrY='),
 (2, 'Al Irfan Alve', 'al.irfan.alve@g.bracu.ac.bd', 1, 1, 1, NULL, 'pbkdf2_sha256$870000$ouvJ8qyvQ6beypgXa5hqVV$2ThZY/vzjF9S9b96Y+aqtDkoiRrm2EBGONCWDXhK6EU='),
 (3, 'Md. Rezaur Rahman Bhuiyan', 'rezaur.rahman.bhuiyan@g.bracu.ac.bd', 1, 1, 1, NULL, 'pbkdf2_sha256$870000$L1n7JC4Q3fSpdzTWswL9TU$taY2PMQn80rfmRPaLFeW2pt/htSaDOq/g9mhZ2WngoE=');
 
@@ -267,7 +267,7 @@ CREATE TABLE `customer` (
 --
 
 INSERT INTO `customer` (`CustomerID`, `FName`, `MName`, `LName`, `Address`, `Phone`, `Email`, `is_active`, `is_staff`, `is_superuser`, `last_login`, `password`) VALUES
-(1, 'Adrita', NULL, 'Zaman', NULL, '01521735832', 'adrita.03.zaman@gmail.com', 1, 0, 0, '2024-09-24 09:53:37.014817', 'pbkdf2_sha256$870000$UQf8cXD6RLJoODwIXrZsFM$Ds1AMYwiJA9LOPVzoPH+aO1+yMy4taEV8iZPAkDM6XA=');
+(1, 'Adrita', NULL, 'Zaman', NULL, '01521735832', 'adrita.03.zaman@gmail.com', 1, 0, 0, '2024-09-24 20:31:54.859579', 'pbkdf2_sha256$870000$UQf8cXD6RLJoODwIXrZsFM$Ds1AMYwiJA9LOPVzoPH+aO1+yMy4taEV8iZPAkDM6XA=');
 
 -- --------------------------------------------------------
 
@@ -411,10 +411,8 @@ CREATE TABLE `django_session` (
 --
 
 INSERT INTO `django_session` (`session_key`, `session_data`, `expire_date`) VALUES
-('2bxrr63vy47qmavwbjiae5v87785iha8', '.eJxVi8sOwiAQRf-FtWnakcfg0n4IGQYQNW0TKCvjv4tJF7q6ybnnvISjtmfXaizuHsRFTOL0yzzxM67fIzxovW0LlX04YB3mVvdtieV6WH9pppp7pxMZsJwAGQNGg1JNPEoiL_uCijYm1AEkgBk9s9WpJ2wTnVEZMuL9AZvJNlw:1sseUR:wceaWr6hjw-_lXG6_03TsA2qxtjTsPZuz3YoInooASU', '2024-10-07 08:32:15.365919'),
 ('cdwvhygpzof073xzh9w4w8wk66nbx9y1', '.eJxVi8sOwiAQRf-FtWnakcfg0n4IGQYQNW0TKCvjv4tJF7q6ybnnvISjtmfXaizuHsRFTOL0yzzxM67fIzxovW0LlX04YB3mVvdtieV6WH9pppp7pxMZsJwAGQNGg1JNPEoiL_uCijYm1AEkgBk9s9WpJ2wTnVEZMuL9AZvJNlw:1ssetf:e0vrApSRQwGuLL37WhxrabWC_OTZUSj65wmSYR34F8w', '2024-10-07 08:58:19.177663'),
-('pc61gq1hayz97ij709nj7fnobdk1qcvi', '.eJxVi8sOwiAQRf-FtWnakcfg0n4IGQYQNW0TKCvjv4tJF7q6ybnnvISjtmfXaizuHsRFTOL0yzzxM67fIzxovW0LlX04YB3mVvdtieV6WH9pppp7pxMZsJwAGQNGg1JNPEoiL_uCijYm1AEkgBk9s9WpJ2wTnVEZMuL9AZvJNlw:1sseoQ:XgDEz4AkudlEiqEzgDFqXYJ7hZ4l62_Ik4hpeoomseE', '2024-10-07 08:52:54.920810'),
-('wzu5n7ff61osqzpdfhxjbp7ix49wzlbx', '.eJxVi0sOwiAQQO_C2jQzI5_iTi9CBgakmmJS2pXx7qZJF7p9n7cKvK01bD0vYRJ1UahOvyxyeua2C3lwu79mXtbhgH24yjy125H8fZV73Scu5IAEPRPkeDYZjRcHo-hINrriEa3TQNqmFE0qJAlJxlSAEDSpzxe4_jQw:1st2z9:D78SLNk3ywo5sZYDtZJPtGV0vqcY_G6LIPEVrYHTICo', '2024-10-08 10:41:35.634916');
+('pc61gq1hayz97ij709nj7fnobdk1qcvi', '.eJxVi8sOwiAQRf-FtWnakcfg0n4IGQYQNW0TKCvjv4tJF7q6ybnnvISjtmfXaizuHsRFTOL0yzzxM67fIzxovW0LlX04YB3mVvdtieV6WH9pppp7pxMZsJwAGQNGg1JNPEoiL_uCijYm1AEkgBk9s9WpJ2wTnVEZMuL9AZvJNlw:1sseoQ:XgDEz4AkudlEiqEzgDFqXYJ7hZ4l62_Ik4hpeoomseE', '2024-10-07 08:52:54.920810');
 
 -- --------------------------------------------------------
 
@@ -471,6 +469,13 @@ CREATE TABLE `product` (
   `product_img` varchar(255) DEFAULT 'https://linklog.com/wp-content/uploads/2023/08/no-image.jpg',
   `AdminID` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `product`
+--
+
+INSERT INTO `product` (`Product_ID`, `Title`, `Description`, `Stock`, `Price`, `product_img`, `AdminID`) VALUES
+(1, '2X 3MM Thick Brown Rustic Jute Twine Hessian String Cord Rope for Hand Craft 250gm', 'The jute twine string is perfect for crafts, scrapbooking, sewing, gardening projects and especially great for vintage, rustic wedding decorations\nEnjoy the fun with craft\nMaterial: Jute\nColor: Brown\nDiameter: Approx. 3mm/ 0.12 inch\n\nTotal Length: Approx. 50m\nPackage Included:\n2 x Jute Twine\n\nOnly the above package content, other products are not included.\nNote: different displays may cause the color of the item in the picture a little different from the real thing. The measurement allowed error is +/- 1-3cm.', 5, 80.00, 'https://img.lazcdn.com/3rd/q/aHR0cHM6Ly9zdGF0aWMtMDEuZGFyYXouY29tLmJkL3AvNTY5MWFkZGU4ZjBhM2Y2ZWM1OGVmNmJhYTVkOTM4MmMuanBn_200x200q75.png_.webp', NULL);
 
 -- --------------------------------------------------------
 
@@ -771,7 +776,7 @@ ALTER TABLE `payment`
 -- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
-  MODIFY `Product_ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `Product_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Constraints for dumped tables
