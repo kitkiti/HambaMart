@@ -17,32 +17,68 @@ header {
     top: 0;
     z-index: 1000;
 }
-
+/* Logo bar */
+.logo-bar {
+    display: flex;
+    justify-content: space-between; /* Distributes space evenly between child elements */
+    align-items: center; /* Vertically aligns items in the center */
+    width: 100%; /* Ensures the logo-bar spans the entire width of the header */
+    padding: 20px 10px;
+}
 /* Logo */
 .logo img {
-    height: 40px;
+    height: 60px;
 }
 
-/* Search bar */
+/* Search bar container */
 .search-bar {
     display: flex;
-    align-items: center;
+    justify-content: center; /* Centers the search bar horizontally */
+    width: 100%;
+    max-width: 688px; /* Max width for larger screens */
+    margin: 0 auto; /* Center the search bar inside its parent */
 }
 
-.search-bar input {
-    padding: 5px;
-    border: none;
+/* Form inside the search bar */
+.search-bar form {
+    display: flex;
+    width: 100%;
+    background-color: #fff;
     border-radius: 3px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); /* Optional: Adds a light shadow */
+    height: 45px; /* Set a consistent height for the search bar */
+    align-items: center;
+    overflow: hidden; /* Ensures button and input are neatly contained inside */
 }
 
+/* Input field */
+.search-bar input {
+    flex: 1; /* Ensures the input takes up available space */
+    padding: 0 10px; /* Adds horizontal padding inside the input */
+    border: none;
+    font-size: 16px;
+    outline: none;
+    height: 100%; /* Makes sure the input matches the height of the search bar */
+    border-radius: 3px 0 0 3px; /* Rounded corners for the left side */
+}
+
+/* Search button */
 .search-bar button {
     background: none;
     border: none;
     cursor: pointer;
+    padding: 0 15px; /* Adds spacing inside the button */
+    height: 100%; /* Ensures it fills the entire height of the form */
+    border-radius: 0 3px 3px 0; /* Rounded corners for the right side */
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
+/* Search button image */
 .search-bar button img {
-    height: 20px;
+    height: 24px; /* Adjust the size of the image */
+    width: 24px;
 }
 
 /* User options */
@@ -115,4 +151,8 @@ footer {
     position: fixed;
     width: 100%;
     bottom: 0;
+}
+
+.logo, .search-bar, .user-options {
+    margin: 0 20px; /* Adds some spacing between the elements */
 }

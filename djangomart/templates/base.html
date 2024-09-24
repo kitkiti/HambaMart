@@ -16,8 +16,12 @@
                 <a href="{% url 'home' %}"><img src="{% static 'img/logo.png' %}" alt="Logo"></a>
             </div>
             <div class="search-bar">
-                <input type="text" placeholder="Search...">
-                <button type="submit"><img src="{% static 'img/magnifying-glass-icon.png' %}" alt="Search"></button>
+                <form action="/search" method="GET">
+                    <input type="text" name="q" placeholder="Search products..." aria-label="Search products">
+                    <button type="submit">
+                        <img src="{% static 'img/magnifying-glass-icon.png' %}" alt="Search">
+                    </button>
+                </form>
             </div>
             <div class="user-options">
                 {% if user.is_authenticated %}
