@@ -11,40 +11,42 @@
 </head>
 <body>
     <header>
-        <div class="logo">
-            <a href="{% url 'home' %}"><img src="{% static 'img/logo.png' %}" alt="Logo"></a>
-        </div>
-        <div class="search-bar">
-            <input type="text" placeholder="Search...">
-            <button type="submit"><img src="{% static 'img/magnifying-glass-icon.png' %}" alt="Search"></button>
-        </div>
-        <div class="user-options">
-            {% if user.is_authenticated %}
-                {% if user.is_staff %}
-                    <div class="user-greeting dropdown">
-                        <span class="dropdown-toggle" data-toggle="dropdown">Hello, Admin {{ user.AdminID }}</span>
-                        <div class="dropdown-menu">
-                            <a class="dropdown-item" href="{% url 'admin_dashboard' %}">Admin Dashboard</a>
-                            <a class="dropdown-item" href="{% url 'logout' %}">Log Out</a>
+        <div class="logo-bar">
+            <div class="logo">
+                <a href="{% url 'home' %}"><img src="{% static 'img/logo.png' %}" alt="Logo"></a>
+            </div>
+            <div class="search-bar">
+                <input type="text" placeholder="Search...">
+                <button type="submit"><img src="{% static 'img/magnifying-glass-icon.png' %}" alt="Search"></button>
+            </div>
+            <div class="user-options">
+                {% if user.is_authenticated %}
+                    {% if user.is_staff %}
+                        <div class="user-greeting dropdown">
+                            <span class="dropdown-toggle" data-toggle="dropdown">Hello, Admin {{ user.AdminID }}</span>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="{% url 'admin_dashboard' %}">Admin Dashboard</a>
+                                <a class="dropdown-item" href="{% url 'logout' %}">Log Out</a>
+                            </div>
                         </div>
-                    </div>
+                    {% else %}
+                        <div class="user-greeting dropdown">
+                            <span class="dropdown-toggle" data-toggle="dropdown">Hello, {{ user.FName }}</span>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="{% url 'account' %}">Manage My Account</a>
+                                <a class="dropdown-item" href="{% url 'logout' %}">Log Out</a>
+                            </div>
+                        </div>
+                        <div class="cart-icon">
+                            <a href="{% url 'cart' %}"><img src="{% static 'img/cart-icon.png' %}" alt="Cart"></a>
+                        </div>
+                    {% endif %}
                 {% else %}
-                    <div class="user-greeting dropdown">
-                        <span class="dropdown-toggle" data-toggle="dropdown">Hello, {{ user.FName }}</span>
-                        <div class="dropdown-menu">
-                            <a class="dropdown-item" href="{% url 'account' %}">Manage My Account</a>
-                            <a class="dropdown-item" href="{% url 'logout' %}">Log Out</a>
-                        </div>
+                    <div class="auth-buttons">
+                        <a href="{% url 'login' %}"><button id="login">LOGIN</button></a>
+                        <a href="{% url 'signup' %}"><button id="signup">SIGN UP</button></a>
                     </div>
                 {% endif %}
-            {% else %}
-                <div class="auth-buttons">
-                    <a href="{% url 'login' %}"><button id="login">LOGIN</button></a>
-                    <a href="{% url 'signup' %}"><button id="signup">SIGN UP</button></a>
-                </div>
-            {% endif %}
-            <div class="cart-icon">
-                <a href="{% url 'cart' %}"><img src="{% static 'img/cart-icon.png' %}" alt="Cart"></a>
             </div>
         </div>
     </header>
