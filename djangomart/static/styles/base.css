@@ -5,7 +5,7 @@ body {
 }
 
 /* Header */
-header {
+.custom-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -18,7 +18,7 @@ header {
     z-index: 1000;
 }
 /* Logo bar */
-.logo-bar {
+.custom-header .logo-bar {
     display: flex;
     justify-content: space-between; /* Distributes space evenly between child elements */
     align-items: center; /* Vertically aligns items in the center */
@@ -26,12 +26,12 @@ header {
     padding: 20px 10px;
 }
 /* Logo */
-.logo img {
+.custom-header .logo img {
     height: 60px;
 }
 
 /* Search bar container */
-.search-bar {
+.custom-header .search-bar {
     display: flex;
     justify-content: center; /* Centers the search bar horizontally */
     width: 100%;
@@ -40,7 +40,7 @@ header {
 }
 
 /* Form inside the search bar */
-.search-bar form {
+.custom-header .search-bar form {
     display: flex;
     width: 100%;
     background-color: #fff;
@@ -52,7 +52,7 @@ header {
 }
 
 /* Input field */
-.search-bar input {
+.custom-header .search-bar input {
     flex: 1; /* Ensures the input takes up available space */
     padding: 0 10px; /* Adds horizontal padding inside the input */
     border: none;
@@ -63,7 +63,7 @@ header {
 }
 
 /* Search button */
-.search-bar button {
+.custom-header .search-bar button {
     background: none;
     border: none;
     cursor: pointer;
@@ -76,18 +76,18 @@ header {
 }
 
 /* Search button image */
-.search-bar button img {
+.custom-header .search-bar button img {
     height: 24px; /* Adjust the size of the image */
     width: 24px;
 }
 
 /* User options */
-.user-options {
+.custom-header .user-options {
     display: flex;
     align-items: center;
 }
 
-.auth-buttons button {
+.custom-header .auth-buttons button {
     background-color: #555;
     color: white;
     border: none;
@@ -96,18 +96,18 @@ header {
     cursor: pointer;
 }
 
-.user-greeting {
+.custom-header .user-greeting {
     display: flex;
     align-items: center;
     margin-right: 20px;
 }
 
-.user-greeting .dropdown-toggle {
+.custom-header .user-greeting .dropdown-toggle {
     cursor: pointer;
 }
 
 /* Dropdown menu */
-.dropdown-menu {
+.custom-header .dropdown-menu {
     display: none;
     position: absolute;
     background-color: #f9f9f9;
@@ -116,24 +116,28 @@ header {
     z-index: 1;
 }
 
-.dropdown-menu a {
+.custom-header .dropdown-menu a {
     color: black;
     padding: 12px 16px;
     text-decoration: none;
     display: block;
 }
 
-.dropdown-menu a:hover {
+.custom-header .dropdown-menu a:hover {
     background-color: #f1f1f1;
 }
 
-.dropdown:hover .dropdown-menu {
+.custom-header .dropdown:hover .dropdown-menu {
     display: block;
 }
 
 /* Cart icon */
-.cart-icon img {
+.custom-header .cart-icon img {
     height: 30px;
+}
+
+.custom-header .logo, .search-bar, .user-options {
+    margin: 0 20px; /* Adds some spacing between the elements */
 }
 
 /* Main content */
@@ -153,6 +157,3 @@ footer {
     bottom: 0;
 }
 
-.logo, .search-bar, .user-options {
-    margin: 0 20px; /* Adds some spacing between the elements */
-}

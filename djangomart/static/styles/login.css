@@ -15,7 +15,7 @@ h2 {
     color: #333;
 }
 
-form {
+main form {
     background: #fff;
     padding: 20px;
     border-radius: 8px;
@@ -23,8 +23,8 @@ form {
     width: 300px;
 }
 
-form input[type="text"],
-form input[type="password"] {
+main form input[type="text"],
+main form input[type="password"] {
     width: 100%;
     padding: 10px;
     margin: 10px 0;
@@ -32,7 +32,7 @@ form input[type="password"] {
     border-radius: 4px;
 }
 
-form button {
+main form button {
     width: 100%;
     padding: 10px;
     background-color: #5cb85c;
@@ -43,7 +43,7 @@ form button {
     cursor: pointer;
 }
 
-form button:hover {
+main form button:hover {
     background-color: #4cae4c;
 }
 
