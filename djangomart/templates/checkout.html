@@ -44,8 +44,9 @@
         <h3>Confirm Order</h3>
         <p>Total Price: {{ total_price }}</p>
         <p>Address: {{ customer.Address }}</p>
-        
-        <button type="submit">Confirm and Proceed to Payment</button>
+        <a href="{% url 'payment_success' %}">  
+            <button type="submit">Confirm and Proceed to Payment</button>
+        </a>
     </form>
     
 {% else %}
