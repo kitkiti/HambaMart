@@ -43,24 +43,24 @@
 
 <div class="search-results">
     <!-- Loop through all products -->
-    {% for product in products %}
         <div class="wrapper">
+			{% for product in products %}
             <div class="single-card">
                 <div class="img-area">
                     <img src="{{ product.product_img }}" alt="{{ product.Title }}">
                     <div class="overlay">
-                        <button class="add-to-cart">Add to Cart</button>
-                        <button class="view-details">View Details</button>
+                        <a href="{% url 'cart' %}"><button class="add-to-cart">Add to Cart</button></a>
+						<a href="{% url 'product_details' product.Product_ID %}"><button class="view-details">View Details</button></a>
                     </div>
                 </div>
                 <div class="card-info">
-                    <h3>{{ product.Title }}</h3>
+                    <h3 class ='product-title'>{{ product.Title }}</h3>
                     <p class="price">BDT {{ product.Price }}</p>
                 </div>
             </div>
+			{% empty %}
+			<p>No products found matching your criteria.</p>
         </div>
-    {% empty %}
-        <p>No products found matching your criteria.</p>
     {% endfor %}
 </div>
 
