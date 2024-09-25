@@ -7,4 +7,45 @@
 {% block extra_css %} <link rel="stylesheet" href="{% static 'styles/account.css' %}"> {% endblock %}
 
 
-{% block content %} {% endblock %}
+{% block content %}
+<button class="product-btn">My orders</button> 
+<br>
+<button class="product-btn">My cart</button>
+<div class="profile-container">
+  <h1>My Profile</h1>
+
+  <form id="profile-form">
+    <div class="form-group">
+      <label for="full-name">First Name:</label>
+      <input type="text" id="first-name" name="first-name" placeholder="Please enter your first name">
+    </div>
+    <div class="form-group">
+      <label for="middle-name">Middle Name:</label>
+      <input type="text" id="middle-name" name="middle-name" placeholder="Please enter your middle name (Optional)">
+    </div>    
+
+    <div class="form-group">
+      <label for="middle-name">Last Name:</label>
+      <input type="text" id="last-name" name="last-name" placeholder="Please enter your last name">
+    </div>     
+
+    <div class="form-group">
+      <label for="email">Email Address:</label>
+      <input type="email" id="email" name="email" placeholder="Please enter your email-address">
+    </div>
+
+    <div class="form-group">
+      <label for="mobile">Mobile Number:</label>
+      <input type="tel" id="mobile" name="mobile" placeholder="Please enter your mobile">
+    </div>
+
+    <div class="form-group">
+      <label for="email">Address:</label>
+      <input type="adr" id="address" name="address" placeholder="Please enter your home address">
+    </div>  
+
+    <button type="submit">Save Changes</button> 
+  </form>
+</div> 
+
+{% endblock %}

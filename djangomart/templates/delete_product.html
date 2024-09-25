@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} Cart {% endblock %}
+
+
+{% block extra_css %} <link rel="stylesheet" href="{% static 'styles/delete_product.css' %}"> {% endblock %}
+
+
+{% block content %} <div class="delete-product-container">
+  <h1>Delete Product</h1>
+
+  <!-- Search Field for Product -->
+  <div class="search-section">
+      <label for="search">Search Product</label>
+      <input type="text" id="search" name="search" placeholder="Enter product name or ID" required>
+      <button type="button" class="search-btn">Search</button>
+  </div>
+
+  <!-- Delete Confirmation Section -->
+  <div class="delete-section">
+      <p id="product-info">No product selected</p>
+      <button type="submit" class="delete-product-btn" disabled>Delete Product</button>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,81 @@
+/* General container styling */
+.signup-container {
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+  text-align: center;
+  font-family: Arial, sans-serif;
+  color: #333;
+  padding-top: 50px;
+}
+
+/* Title styling */
+h1 {
+  font-size: 2em;
+  margin-bottom: 30px;
+  font-weight: bold;
+}
+
+/* Form styling */
+.signup-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* Label styling */
+label {
+  text-align: left;
+  margin-bottom: 5px;
+  font-size: 1em;
+  font-weight: normal;
+}
+
+/* Input field styling */
+input {
+  padding: 10px;
+  font-size: 1em;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+input::placeholder {
+  color: #ccc;
+}
+
+/* Button styling */
+.signup-btn {
+  background-color: #4d6535;
+  color: white;
+  border: none;
+  padding: 15px;
+  font-size: 1.1em;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+.signup-btn:hover {
+  background-color: #3e522a;
+}
+
+/* Sign In Link */
+.signin-link {
+  margin-top: 20px;
+}
+
+.signin-link p {
+  font-size: 0.9em;
+  color: #333;
+}
+
+.signin-link a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.signin-link a:hover {
+  text-decoration: underline;
+}

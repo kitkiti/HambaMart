@@ -48,6 +48,15 @@ def base(request):
 def admin_view(request):
     return render(request, 'admin_dashboard.html')
 
+def addproduct_view(request):
+    return render(request, 'add_product.html')
+
+def editproduct_view(request):
+    return render(request, 'edit_product.html')
+
+def deleteproduct_view(request):
+    return render(request, 'delete_product.html')
+
 def product_details_view(request, product_id):
     product = get_object_or_404(Product, pk=product_id)
     return render(request, 'product_details.html', {'product': product})
