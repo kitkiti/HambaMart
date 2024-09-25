@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 25, 2024 at 10:35 AM
+-- Generation Time: Sep 25, 2024 at 01:03 PM
 -- Server version: 10.5.26-MariaDB
 -- PHP Version: 8.2.12
 
@@ -43,7 +43,7 @@ CREATE TABLE `admin` (
 --
 
 INSERT INTO `admin` (`AdminID`, `Name`, `Email`, `is_active`, `is_staff`, `is_superuser`, `last_login`, `password`) VALUES
-(1, 'Tasfia Zaman', 'tasfia.zaman@g.bracu.ac.bd', 1, 1, 1, '2024-09-24 20:32:19.570376', 'pbkdf2_sha256$870000$x2j7C5hkagLJ8Smz5uL8Go$gssmHwqDiBDq/iPcvi9nGd/EA5q4NlZZALhNIquarrY='),
+(1, 'Tasfia Zaman', 'tasfia.zaman@g.bracu.ac.bd', 1, 1, 1, '2024-09-25 10:08:50.735233', 'pbkdf2_sha256$870000$x2j7C5hkagLJ8Smz5uL8Go$gssmHwqDiBDq/iPcvi9nGd/EA5q4NlZZALhNIquarrY='),
 (2, 'Al Irfan Alve', 'al.irfan.alve@g.bracu.ac.bd', 1, 1, 1, '2024-09-25 08:27:03.443880', 'pbkdf2_sha256$870000$ouvJ8qyvQ6beypgXa5hqVV$2ThZY/vzjF9S9b96Y+aqtDkoiRrm2EBGONCWDXhK6EU='),
 (3, 'Md. Rezaur Rahman Bhuiyan', 'rezaur.rahman.bhuiyan@g.bracu.ac.bd', 1, 1, 1, NULL, 'pbkdf2_sha256$870000$L1n7JC4Q3fSpdzTWswL9TU$taY2PMQn80rfmRPaLFeW2pt/htSaDOq/g9mhZ2WngoE=');
 
@@ -412,9 +412,11 @@ CREATE TABLE `django_session` (
 
 INSERT INTO `django_session` (`session_key`, `session_data`, `expire_date`) VALUES
 ('cdwvhygpzof073xzh9w4w8wk66nbx9y1', '.eJxVi8sOwiAQRf-FtWnakcfg0n4IGQYQNW0TKCvjv4tJF7q6ybnnvISjtmfXaizuHsRFTOL0yzzxM67fIzxovW0LlX04YB3mVvdtieV6WH9pppp7pxMZsJwAGQNGg1JNPEoiL_uCijYm1AEkgBk9s9WpJ2wTnVEZMuL9AZvJNlw:1ssetf:e0vrApSRQwGuLL37WhxrabWC_OTZUSj65wmSYR34F8w', '2024-10-07 08:58:19.177663'),
+('j5riwrjxj5a9pi3jnj7xcnewdokn4vt3', '.eJxVi0sOwiAQQO_C2jQzI5_iTi9CBgakmmJS2pXx7qZJF7p9n7cKvK01bD0vYRJ1UahOvyxyeua2C3lwu79mXtbhgH24yjy125H8fZV73Scu5IAEPRPkeDYZjRcHo-hINrriEa3TQNqmFE0qJAlJxlSAEDSpzxe4_jQw:1stOvr:v6uJVnbaIwFihCCUGqFq5_MAO9tCJw15AxK-ENtNaIw', '2024-10-09 10:07:39.278499'),
 ('pc61gq1hayz97ij709nj7fnobdk1qcvi', '.eJxVi8sOwiAQRf-FtWnakcfg0n4IGQYQNW0TKCvjv4tJF7q6ybnnvISjtmfXaizuHsRFTOL0yzzxM67fIzxovW0LlX04YB3mVvdtieV6WH9pppp7pxMZsJwAGQNGg1JNPEoiL_uCijYm1AEkgBk9s9WpJ2wTnVEZMuL9AZvJNlw:1sseoQ:XgDEz4AkudlEiqEzgDFqXYJ7hZ4l62_Ik4hpeoomseE', '2024-10-07 08:52:54.920810'),
 ('pddrj15saielhnr7zs06xoedmrpn7c6s', '.eJxVi80OwiAMgN-Fs1kKG1i86YuQUlqZZjMZ28n47mqyg16_n6dJtK01bU2WNBZzMs4cflkmvsv8FeVG8_Ux0bJ2O2zduUzjfNmTv69Sq59JoRcqrkfL6G0QZQwRwEMWoUFzJKfsxR1JRcFLxEGQEYuNIXsG83oD2D41TQ:1stJX5:OUfXP-QagjlOZUuhCaoxGciJ47rUe2YGiQV4TLzzOGU', '2024-10-09 04:21:43.086297'),
-('peogp5nmq6l85qrr5lroix89zsa9qs5q', '.eJxVi80OwiAMgN-Fs1kKG1i86YuQUlqZZjMZ28n47mqyg16_n6dJtK01bU2WNBZzMs4cflkmvsv8FeVG8_Ux0bJ2O2zduUzjfNmTv69Sq59JoRcqrkfL6G0QZQwRwEMWoUFzJKfsxR1JRcFLxEGQEYuNIXsG83oD2D41TQ:1stNMV:tB0LF2aC6fKwSwfK24ZJ6zEc40xy9uw8p_iok_iJIK0', '2024-10-09 08:27:03.445380');
+('peogp5nmq6l85qrr5lroix89zsa9qs5q', '.eJxVi80OwiAMgN-Fs1kKG1i86YuQUlqZZjMZ28n47mqyg16_n6dJtK01bU2WNBZzMs4cflkmvsv8FeVG8_Ux0bJ2O2zduUzjfNmTv69Sq59JoRcqrkfL6G0QZQwRwEMWoUFzJKfsxR1JRcFLxEGQEYuNIXsG83oD2D41TQ:1stNMV:tB0LF2aC6fKwSwfK24ZJ6zEc40xy9uw8p_iok_iJIK0', '2024-10-09 08:27:03.445380'),
+('v8euvdd3uqpvqjdv37d94san1z9jpnww', '.eJxVi0sOwiAQQO_C2jQzI5_iTi9CBgakmmJS2pXx7qZJF7p9n7cKvK01bD0vYRJ1UahOvyxyeua2C3lwu79mXtbhgH24yjy125H8fZV73Scu5IAEPRPkeDYZjRcHo-hINrriEa3TQNqmFE0qJAlJxlSAEDSpzxe4_jQw:1stOx0:TMdaw3KLdwz9JDUfRZxJVLmHC6kMVvs8WVxtvYYA2xQ', '2024-10-09 10:08:50.739324');
 
 -- --------------------------------------------------------
 
@@ -477,7 +479,11 @@ CREATE TABLE `product` (
 --
 
 INSERT INTO `product` (`Product_ID`, `Title`, `Description`, `Stock`, `Price`, `product_img`, `AdminID`) VALUES
-(1, '2X 3MM Thick Brown Rustic Jute Twine Hessian String Cord Rope for Hand Craft 250gm', 'The jute twine string is perfect for crafts, scrapbooking, sewing, gardening projects and especially great for vintage, rustic wedding decorations\nEnjoy the fun with craft\nMaterial: Jute\nColor: Brown\nDiameter: Approx. 3mm/ 0.12 inch\n\nTotal Length: Approx. 50m\nPackage Included:\n2 x Jute Twine\n\nOnly the above package content, other products are not included.\nNote: different displays may cause the color of the item in the picture a little different from the real thing. The measurement allowed error is +/- 1-3cm.', 5, 80.00, 'https://img.lazcdn.com/3rd/q/aHR0cHM6Ly9zdGF0aWMtMDEuZGFyYXouY29tLmJkL3AvNTY5MWFkZGU4ZjBhM2Y2ZWM1OGVmNmJhYTVkOTM4MmMuanBn_200x200q75.png_.webp', NULL);
+(1, '2X 3MM Thick Brown Rustic Jute Twine Hessian String Cord Rope for Hand Craft 250gm', 'The jute twine string is perfect for crafts, scrapbooking, sewing, gardening projects and especially great for vintage, rustic wedding decorations\nEnjoy the fun with craft\nMaterial: Jute\nColor: Brown\nDiameter: Approx. 3mm/ 0.12 inch\n\nTotal Length: Approx. 50m\nPackage Included:\n2 x Jute Twine\n\nOnly the above package content, other products are not included.\nNote: different displays may cause the color of the item in the picture a little different from the real thing. The measurement allowed error is +/- 1-3cm.', 5, 80.00, 'https://img.lazcdn.com/3rd/q/aHR0cHM6Ly9zdGF0aWMtMDEuZGFyYXouY29tLmJkL3AvNTY5MWFkZGU4ZjBhM2Y2ZWM1OGVmNmJhYTVkOTM4MmMuanBn_200x200q75.png_.webp', NULL),
+(6, 'Sahiwal Bull 415Kg', 'Age: 2.6 Year\r\nWeight: 415Kg till Eid\r\n\r\nThis Sahiwal bull is a breed of Indian Zebu cattle found in the states of Punjab, Haryana and Rajasthan, also this breed of cow is now being reared in Bangladesh. There is a lot of demand during this cow sacrifice in our country. These bulls eat grass, weeds and other food like native cows, so this beef is very tasty like native beef.', 1, 260000.00, 'https://cdn.bdstall.com/product-image/giant_273901.jpg', NULL),
+(7, 'Automatic Cow Body Cleaning Brush', 'This automatic cow body cleaning brush is important for growth health and beauty of cows. This brush also improves animal health by increasing blood circulation. It helps to keep the cow clean and fresh. It help to prevent cow skin diseases as well.\r\n\r\nFull Specification:\r\nAutomatic on / off control\r\nLow energy consumption\r\nSwings freely in all directions\r\nThe brush rotating on demand\r\nEasy to keep clean\r\nSuitable for 50-60 cows\r\nQuick and easy to install\r\nFlexible ​to place on the wall\r\nAutomatic stop it within 10 seconds after use\r\nBracket size is 1200 x 500 x 1000 mm\r\nThe brush size is 500 x 600 mm\r\nSpeed is 22 RPM\r\nCompatible voltage is 220V / 50HZ / 100W\r\nBristle material is nylon\r\nComes in a round shape\r\nWeight is 10kg\r\nMade in Singapore', 3, 65000.00, 'https://cdn.bdstall.com/product-image/giant_175203.jpg', NULL),
+(8, '100 Pieces Ear Tag for Cow', 'Plastic material, sign with the word cattle cow ear tag, 1-100 number, TPU material, durable, laser type with no fade, copper head earring.\r\n\r\nFull Specification\r\nLength: Approx.5cm / 1.97 inch\r\nWidth: Approx.4cm / 1.57 inch\r\nGreen color available\r\nMaterial: Plastic', 40, 4500.00, 'https://cdn.bdstall.com/product-image/giant_114363.jpg', NULL),
+(9, 'Kota Goat K0143', 'Basically, Kota goats are large size animal with long legs. Coat color of Kota goat is predominantly black with white spots on ears and muzzle. However, a few white, brown and spotted goats are also found. The body of Kota goat is covered densely with hair which is short and coarse\r\n\r\nSpecification:\r\nAge : 2 Year(s)\r\nGender : Male\r\nWeight : 35 kg', 1, 42636.61, 'https://s3.ap-south-1.amazonaws.com/pashushala.com/scaled/fe3042df3a7b5cfb38eba74fadcd991a239b0e0bdfe1604d15609354fcc64af2.jpg', NULL);
 
 -- --------------------------------------------------------
 
@@ -490,6 +496,36 @@ CREATE TABLE `product_tags` (
   `Tag` varchar(255) NOT NULL,
   `id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `product_tags`
+--
+
+INSERT INTO `product_tags` (`Product_ID`, `Tag`, `id`) VALUES
+(6, '415KG', NULL),
+(6, 'Bull', NULL),
+(6, 'Cattle', NULL),
+(6, 'Cow', NULL),
+(6, 'Cows', NULL),
+(6, 'Indian Zebu Breed', NULL),
+(6, 'Sahiwal', NULL),
+(7, 'Brush', NULL),
+(7, 'Cleaning Brush', NULL),
+(7, 'Cow', NULL),
+(7, 'Cows', NULL),
+(7, 'Tools & Equipment', NULL),
+(8, 'Cattle', NULL),
+(8, 'Cow', NULL),
+(8, 'Ear Tag', NULL),
+(8, 'Ear Tags', NULL),
+(8, 'Plastic', NULL),
+(8, 'Tag', NULL),
+(8, 'Tags', NULL),
+(9, 'Goat', NULL),
+(9, 'Goats', NULL),
+(9, 'Indian', NULL),
+(9, 'Kota', NULL),
+(9, 'Rajasthan', NULL);
 
 --
 -- Indexes for dumped tables
@@ -779,7 +815,7 @@ ALTER TABLE `payment`
 -- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
-  MODIFY `Product_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `Product_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- Constraints for dumped tables
