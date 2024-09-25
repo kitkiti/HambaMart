@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} Hambamart {% endblock %}
+
+
+{% block extra_css %}<link rel="stylesheet" href="{% static 'styles/search_edit_product.css' %}">{% endblock %}
+
+
+{% block content %}<h1>Search and Edit Product</h1>
+
+<!-- Search Bar -->
+<form method="POST" action="{% url 'search_and_edit_product' %}">
+    {% csrf_token %}
+    <label for="product_id">Enter Product ID:</label>
+    <input type="text" id="product_id" name="product_id" placeholder="Enter Product ID" required>
+    <button type="submit" class="btn">Search</button>
+</form>
+
+{% if product %}
+    <h2>Editing Product: {{ product.Title }}</h2>
+
+    <!-- Edit Product Form -->
+    <form method="POST" action="{% url 'search_and_edit_product' %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="hidden" name="product_id" value="{{ product.Product_ID }}">
+        <button type="submit" name="edit_product" class="btn">Edit Product</button>
+    </form>
+{% elif product is None and request.method == 'POST' %}
+    <p>No product found with that ID.</p>
+{% endif %}
+{% endblock %}

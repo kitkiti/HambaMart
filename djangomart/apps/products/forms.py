@@ -17,3 +17,4 @@ class ProductForm(forms.ModelForm):
             for tag in tags:
                 ProductTags.objects.create(Product_ID=product, Tag=tag)
         return product
+
