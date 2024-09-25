@@ -63,8 +63,8 @@ def product_details_view(request, product_id):
 
 
 def add_product_view(request):
-    if request.method == 'POST':
-        form = ProductForm(request.POST)
+    if request.method== 'POST':
+        form= ProductForm(request.POST)
         if form.is_valid():
             form.save()  # This will save the product and associated tags
             return redirect('admin_dashboard')  # Redirect to the product list or another page

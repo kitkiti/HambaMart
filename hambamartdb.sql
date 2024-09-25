@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 25, 2024 at 01:15 AM
+-- Generation Time: Sep 25, 2024 at 10:35 AM
 -- Server version: 10.5.26-MariaDB
 -- PHP Version: 8.2.12
 
@@ -44,7 +44,7 @@ CREATE TABLE `admin` (
 
 INSERT INTO `admin` (`AdminID`, `Name`, `Email`, `is_active`, `is_staff`, `is_superuser`, `last_login`, `password`) VALUES
 (1, 'Tasfia Zaman', 'tasfia.zaman@g.bracu.ac.bd', 1, 1, 1, '2024-09-24 20:32:19.570376', 'pbkdf2_sha256$870000$x2j7C5hkagLJ8Smz5uL8Go$gssmHwqDiBDq/iPcvi9nGd/EA5q4NlZZALhNIquarrY='),
-(2, 'Al Irfan Alve', 'al.irfan.alve@g.bracu.ac.bd', 1, 1, 1, NULL, 'pbkdf2_sha256$870000$ouvJ8qyvQ6beypgXa5hqVV$2ThZY/vzjF9S9b96Y+aqtDkoiRrm2EBGONCWDXhK6EU='),
+(2, 'Al Irfan Alve', 'al.irfan.alve@g.bracu.ac.bd', 1, 1, 1, '2024-09-25 08:27:03.443880', 'pbkdf2_sha256$870000$ouvJ8qyvQ6beypgXa5hqVV$2ThZY/vzjF9S9b96Y+aqtDkoiRrm2EBGONCWDXhK6EU='),
 (3, 'Md. Rezaur Rahman Bhuiyan', 'rezaur.rahman.bhuiyan@g.bracu.ac.bd', 1, 1, 1, NULL, 'pbkdf2_sha256$870000$L1n7JC4Q3fSpdzTWswL9TU$taY2PMQn80rfmRPaLFeW2pt/htSaDOq/g9mhZ2WngoE=');
 
 -- --------------------------------------------------------
@@ -412,7 +412,9 @@ CREATE TABLE `django_session` (
 
 INSERT INTO `django_session` (`session_key`, `session_data`, `expire_date`) VALUES
 ('cdwvhygpzof073xzh9w4w8wk66nbx9y1', '.eJxVi8sOwiAQRf-FtWnakcfg0n4IGQYQNW0TKCvjv4tJF7q6ybnnvISjtmfXaizuHsRFTOL0yzzxM67fIzxovW0LlX04YB3mVvdtieV6WH9pppp7pxMZsJwAGQNGg1JNPEoiL_uCijYm1AEkgBk9s9WpJ2wTnVEZMuL9AZvJNlw:1ssetf:e0vrApSRQwGuLL37WhxrabWC_OTZUSj65wmSYR34F8w', '2024-10-07 08:58:19.177663'),
-('pc61gq1hayz97ij709nj7fnobdk1qcvi', '.eJxVi8sOwiAQRf-FtWnakcfg0n4IGQYQNW0TKCvjv4tJF7q6ybnnvISjtmfXaizuHsRFTOL0yzzxM67fIzxovW0LlX04YB3mVvdtieV6WH9pppp7pxMZsJwAGQNGg1JNPEoiL_uCijYm1AEkgBk9s9WpJ2wTnVEZMuL9AZvJNlw:1sseoQ:XgDEz4AkudlEiqEzgDFqXYJ7hZ4l62_Ik4hpeoomseE', '2024-10-07 08:52:54.920810');
+('pc61gq1hayz97ij709nj7fnobdk1qcvi', '.eJxVi8sOwiAQRf-FtWnakcfg0n4IGQYQNW0TKCvjv4tJF7q6ybnnvISjtmfXaizuHsRFTOL0yzzxM67fIzxovW0LlX04YB3mVvdtieV6WH9pppp7pxMZsJwAGQNGg1JNPEoiL_uCijYm1AEkgBk9s9WpJ2wTnVEZMuL9AZvJNlw:1sseoQ:XgDEz4AkudlEiqEzgDFqXYJ7hZ4l62_Ik4hpeoomseE', '2024-10-07 08:52:54.920810'),
+('pddrj15saielhnr7zs06xoedmrpn7c6s', '.eJxVi80OwiAMgN-Fs1kKG1i86YuQUlqZZjMZ28n47mqyg16_n6dJtK01bU2WNBZzMs4cflkmvsv8FeVG8_Ux0bJ2O2zduUzjfNmTv69Sq59JoRcqrkfL6G0QZQwRwEMWoUFzJKfsxR1JRcFLxEGQEYuNIXsG83oD2D41TQ:1stJX5:OUfXP-QagjlOZUuhCaoxGciJ47rUe2YGiQV4TLzzOGU', '2024-10-09 04:21:43.086297'),
+('peogp5nmq6l85qrr5lroix89zsa9qs5q', '.eJxVi80OwiAMgN-Fs1kKG1i86YuQUlqZZjMZ28n47mqyg16_n6dJtK01bU2WNBZzMs4cflkmvsv8FeVG8_Ux0bJ2O2zduUzjfNmTv69Sq59JoRcqrkfL6G0QZQwRwEMWoUFzJKfsxR1JRcFLxEGQEYuNIXsG83oD2D41TQ:1stNMV:tB0LF2aC6fKwSwfK24ZJ6zEc40xy9uw8p_iok_iJIK0', '2024-10-09 08:27:03.445380');
 
 -- --------------------------------------------------------
 
@@ -485,7 +487,8 @@ INSERT INTO `product` (`Product_ID`, `Title`, `Description`, `Stock`, `Price`, `
 
 CREATE TABLE `product_tags` (
   `Product_ID` int(11) NOT NULL,
-  `Tag` varchar(255) NOT NULL
+  `Tag` varchar(255) NOT NULL,
+  `id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -776,7 +779,7 @@ ALTER TABLE `payment`
 -- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
-  MODIFY `Product_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `Product_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Constraints for dumped tables
