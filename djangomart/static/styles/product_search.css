@@ -10,7 +10,7 @@ main .wrapper{
 .single-card{
     position: relative;
     width: 280px;
-    height: 400px;
+    height: 350px;
     margin: 15px;
     box-shadow: 0 2px 20px rgba(0,0,0,0.5);
     overflow: hidden;
@@ -22,6 +22,20 @@ main .wrapper{
 .single-card:hover{
     transform: translateY(-10px);
 }
+
+.single-card .product-title {
+    font-size: 23px;
+    font-weight: bold;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin-bottom: 15px;
+    color: #333333;
+}
+
 
 main .img-area{
     position: relative;
@@ -100,7 +114,7 @@ main .img-area:hover img{
     margin: 0;
     font-size: 30px;
     font-weight: bold;
-    color: aqua;
+    color: orangered;
 }
 
 main .side-bar {
@@ -115,6 +129,7 @@ main .side-bar {
 main .search-results {
     float: right;
     width: 70%;
+    justify-content: space-around;
 }
 
 main .filter-section {
