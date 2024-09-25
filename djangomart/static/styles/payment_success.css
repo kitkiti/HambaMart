@@ -1,0 +1,35 @@
+/* General body styles */
+body {
+    font-family: 'Arial', sans-serif; 
+    background-color: #f0f4f8; 
+    margin: 0; /* Remove default margin */
+    padding: 0; /* Remove default padding */
+    display: flex; /* Use flexbox for centering */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    height: 100vh; /* Full height of the viewport */
+}
+
+/* Center the success message container */
+.success-container {
+    max-width: 500px; /* Limit the width of the container */
+    padding: 30px; /* Add padding for space inside */
+    background-color: #ffffff; /* White background for the container */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    text-align: center; /* Center text inside the container */
+}
+
+/* Heading styles */
+h1 {
+    color: #28a745; /* Green color for the success message */
+    font-size: 2em; /* Larger font size for the heading */
+    margin-bottom: 15px; /* Space below the heading */
+}
+
+/* Paragraph styles */
+p {
+    color: #555; /* Dark gray color for the paragraph text */
+    font-size: 1.2em; /* Slightly larger font size */
+    line-height: 1.5; /* Improved line spacing */
+}
