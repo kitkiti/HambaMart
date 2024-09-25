@@ -39,26 +39,6 @@ def product_search(request):
     }
 
     return render(request, 'product_search.html', context)
-@login_required
-@require_POST
-def add_to_cart(request, product_id):
-    product = get_object_or_404(Product, Product_ID=product_id)
-    cart, created = Cart.objects.get_or_create(CustomerID=request.user)
-    
-    quantity = int(request.POST.get('quantity', 1))  # Get the quantity from the form, default to 1
-    cart_product, created = CartProduct.objects.get_or_create(
-        Product_ID=product,
-        CustomerID=request.user,
-        Cart_ID=cart,
-        defaults={'Quantity': quantity}  # Set the default quantity
-    )
-    
-    if not created:
-        cart_product.Quantity += quantity  # Update quantity if product is already in cart
-    cart_product.save()
-    
-    return redirect('cart_view')  # Redirect to cart view after adding
-
 
 def home(request):
     return render(request, 'home.html')

@@ -17,7 +17,6 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include #new
-
 from apps.products  import views as pviews
 from apps.customers import views as cviews
 from django.urls import path
@@ -43,9 +42,11 @@ urlpatterns = [
     path('search-edit-product/', pviews.search_and_edit_product, name='search_and_edit_product'),
 
     path('add_to_cart/<int:product_id>/', cviews.add_to_cart, name='add_to_cart'),
+    # path('remove_from_cart/<int:product_id>/<int:customer_id>/<int:cart_id>/', cviews.remove_from_cart, name='remove_from_cart'),
     path('remove_from_cart/<int:cart_product_id>/', cviews.remove_from_cart, name='remove_from_cart'),
+
     path('checkout/', order_views.checkout, name='checkout'),
     path('process_payment/<int:order_id>/', order_views.process_payment, name='process_payment'),
-    #path('payment_success/', order_views.payment_success, name='payment_success'),
     path('order_confirmation/<int:order_id>/', order_views.order_confirmation, name='order_confirmation'),
+    # path('payment_success/', order_views.payment_success, name='payment_success'),
 ]
