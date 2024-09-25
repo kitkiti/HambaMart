@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} Cart {% endblock %}
+
+{% block extra_css %} <link rel="stylesheet" href="{% static 'styles/checkout.css' %}"> {% endblock %}
+
+{% block content %}
+
+<h2>Checkout</h2>
+
+{% if cart_products %}
+    <table>
+        <thead>
+            <tr>
+                <th>Product</th>
+                <th>Quantity</th>
+                <th>Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in cart_products %}
+            <tr>
+                <td>{{ item.Product_ID.Title }}</td>
+                <td>{{ item.Quantity }}</td>
+                <td>৳{{ item.Product_ID.Price }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <p><strong>Total Price: </strong>৳{{ total_price }}</p>
+
+    <form method="POST">
+        {% csrf_token %}
+        <button type="submit">Confirm and Place Order</button>
+    </form>
+{% else %}
+    <p>No items in your cart to checkout.</p>
+{% endif %}
+{% endblock %}

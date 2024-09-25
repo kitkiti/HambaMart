@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block title %}Order Confirmation{% endblock %}
+{% block extra_css %} <link rel="stylesheet" href="{% static 'styles/order_confirmation.css' %}"> {% endblock %}
+
+{% block content %}
+<h2>Order Confirmation</h2>
+
+<p>Thank you for your purchase! Your order has been successfully placed.</p>
+
+<p><strong>Order ID:</strong> {{ order.Order_ID }}</p>
+<p><strong>Total Price:</strong> ৳{{ order.Total_Price }}</p>
+<p><strong>Status:</strong> {{ order.Status }}</p>
+
+<h3>Order Details</h3>
+<table>
+    <thead>
+        <tr>
+            <th>Product</th>
+            <th>Quantity</th>
+            <th>Price</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for item in order_products %}
+        <tr>
+            <td>{{ item.Product_ID.Title }}</td>
+            <td>{{ item.product_quantity }}</td>
+            <td>৳{{ item.Product_ID.Price }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<a href="{% url 'home' %}">Go to Home</a>
+{% endblock %}
