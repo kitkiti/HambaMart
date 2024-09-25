@@ -1,4 +1,4 @@
-from datetime import timezone
+from django.utils import timezone
 from django.shortcuts import get_object_or_404, render, redirect
 from apps.orders.models import Payment, Orders, OrderProduct
 from apps.customers.models import Cart, CartProduct
@@ -50,6 +50,10 @@ def order_confirmation(request, order_id):
     }
     
     return render(request, 'order_confirmation.html', context)
+
+def payment_success(request):
+    # Render a success page after payment is processed
+    return render(request, 'orders/payment_success.html')
 
 
 @login_required
