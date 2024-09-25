@@ -10,29 +10,21 @@ from apps.customers.models import Cart, CartProduct, Customer
 from django.contrib.auth.decorators import login_required
 
 
-# View to handle adding product to the cart
 def add_to_cart(request, product_id):
-    # Assuming user is authenticated
-    customer = request.user  # Get the logged-in customer
+    customer = request.user  
     product = get_object_or_404(Product, pk=product_id)
-    
-    # Check if the product is in stock
     if product.Stock <= 0:
         messages.error(request, 'This product is out of stock.')
         return redirect('product_detail', product_id=product_id)
     
-    # Find or create a cart for the customezr
     cart, created = Cart.objects.get_or_create(CustomerID=customer)
 
     try:
-        # Check if the product is already in the cart
         cart_product = CartProduct.objects.get(Product_ID=product, CustomerID=customer, Cart_ID=cart)
-        # If the product is already in the cart, update the quantity
         cart_product.Quantity += 1
         cart_product.save()
     
     except CartProduct.DoesNotExist:
-        # If the product is not in the cart, create a new cart product
         CartProduct.objects.create(
             Product_ID=product,
             CustomerID=customer,
@@ -40,14 +32,11 @@ def add_to_cart(request, product_id):
             Quantity=1
         )
 
-    # Redirect to the cart page after adding the product
     return redirect('cart')
 
 def remove_from_cart(request, cart_product_id):
     cart_product = get_object_or_404(CartProduct, pk=cart_product.id)
     cart_product.delete()
-    
-    # Redirect back to the cart page after removal
     return redirect('cart')
 
 def cart_view(request):
@@ -64,20 +53,6 @@ def cart_view(request):
     return render(request, 'cart.html', context)
 
 
-# # View to display the cart
-def cart(request):
-    customer = request.user  # Get the logged-in customer
-    cart = Cart.objects.filter(CustomerID=customer).first()  # Get the cart for the customer
-
-    # Get all products in the cart
-    cart_products = CartProduct.objects.filter(Cart_ID=cart)
-
-    context = {
-        'cart': cart,
-        'cart_products': cart_products
-    }
-
-    return render(request, 'cart.html', context)
 
 
 def custom_login_view(request):

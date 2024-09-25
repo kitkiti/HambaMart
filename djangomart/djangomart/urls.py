@@ -42,7 +42,6 @@ urlpatterns = [
     path('search-edit-product/', pviews.search_and_edit_product, name='search_and_edit_product'),
 
     path('add_to_cart/<int:product_id>/', cviews.add_to_cart, name='add_to_cart'),
-    # path('remove_from_cart/<int:product_id>/<int:customer_id>/<int:cart_id>/', cviews.remove_from_cart, name='remove_from_cart'),
     path('remove_from_cart/<int:cart_product_id>/', cviews.remove_from_cart, name='remove_from_cart'),
 
     path('checkout/', order_views.checkout, name='checkout'),

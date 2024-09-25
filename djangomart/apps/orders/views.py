@@ -18,7 +18,7 @@ def checkout(request):
         new_order = Orders.objects.create(
             Total_Price=cart.total_price,
             Status='Pending',
-            Address=customer.Address,  # You can ask the user to confirm the address
+            Address=customer.Address, 
             created_at=timezone.now()
         )
 
@@ -29,11 +29,8 @@ def checkout(request):
                 product_quantity=cart_product.Quantity
             )
         
-        # Clear the cart after order creation
         cart_products.delete()
-
-        # Proceed to payment
-        return redirect('process_payment', order_id=new_order.Order_ID)  # Redirect to process payment
+        return redirect('process_payment', order_id=new_order.Order_ID) 
 
     context = {
         'cart_products': cart_products,

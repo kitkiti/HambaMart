@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} Payment {% endblock %}
+
+{% block content %}
+<h2>Payment</h2>
+
+<p><strong>Total Amount:</strong> ৳{{ order.Total_Price }}</p>
+
+<form method="POST">
+    {% csrf_token %}
+    <label for="payment_method">Select Payment Method:</label>
+    <select name="payment_method" id="payment_method" required>
+        <option value="" disabled selected>Select your payment method</option>
+        <option value="Credit Card">Credit Card</option>
+        <option value="Debit Card">Debit Card</option>
+        <option value="Bkash">Bkash</option>
+        <option value="Cash on Delivery">Cash on Delivery</option>
+    </select>
+    <br><br>
+    <button type="submit">Confirm Payment</button>
+</form>
+{% endblock %}

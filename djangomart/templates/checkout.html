@@ -6,7 +6,6 @@
 {% block extra_css %} <link rel="stylesheet" href="{% static 'styles/checkout.css' %}"> {% endblock %}
 
 {% block content %}
-
 <h2>Checkout</h2>
 
 {% if cart_products %}
@@ -33,8 +32,22 @@
 
     <form method="POST">
         {% csrf_token %}
-        <button type="submit">Confirm and Place Order</button>
+        
+        <h3>Select Payment Method</h3>
+        <select name="payment_method" required>
+            <option value="">--Select Payment Method--</option>
+            <option value="credit_card">Credit Card</option>
+            <option value="debit_card">Debit Card</option>
+            <option value="paypal">PayPal</option>
+        </select>
+    
+        <h3>Confirm Order</h3>
+        <p>Total Price: {{ total_price }}</p>
+        <p>Address: {{ customer.Address }}</p>
+        
+        <button type="submit">Confirm and Proceed to Payment</button>
     </form>
+    
 {% else %}
     <p>No items in your cart to checkout.</p>
 {% endif %}
