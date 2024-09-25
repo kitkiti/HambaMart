@@ -3,7 +3,8 @@ from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib import messages
 from apps.customers.models import Customer  # Import your Customer model
-from apps.products.models import Admin  # Import your Admin model
+from apps.products.models import Admin
+from apps.customers.forms import CustomerSignUpForm  # Import your Admin model
 
 
 def custom_login_view(request):
@@ -43,3 +44,14 @@ def logout_view(request):
     logout(request)
     messages.success(request, "You have successfully logged out.")
     return redirect('home')  # Redirect to home page after logout
+
+def signup_view(request):
+    if request.method == 'POST':
+        form = CustomerSignUpForm(request.POST)
+        if form.is_valid():
+            user= form.save()
+            return redirect('login')  # Redirect to a homepage or another page
+    else:
+        form = CustomerSignUpForm()
+    
+    return render(request, 'signup.html', {'form': form})
