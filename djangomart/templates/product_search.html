@@ -3,9 +3,11 @@
 
 {% block title %} Hambamart: Search Results {% endblock %}
 
-
-{% block extra_css %} <link rel="stylesheet" href="{% static 'styles/product_search.css' %}"> {% endblock %}
-
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'styles/product_search.css' %}">
+    <!-- Include noUiSlider styles -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/15.5.1/nouislider.min.css">
+{% endblock %}
 
 {% block content %}
 	
@@ -24,16 +26,16 @@
             <label><input type="checkbox" name="categories" value="Animal Feed" {% if 'Animal Feed' in selected_categories %}checked{% endif %}> Animal Feed</label><br>
         </div>
 
-        <!-- Price Filter -->
+        <!-- Price Filter (Dual Handle Slider) -->
         <div class="filter-section">
             <h4>Price Filter</h4>
-            <label for="min_price">Min Price:</label>
-            <input type="range" name="min_price" id="min_price" min="0" max="5000000" value="{{ min_price|default:0 }}">
-            <span id="min_price_display">{{ min_price|default:"0" }}</span>
+            <div id="price-range-slider"></div> <!-- Dual handle price slider -->
+            <span>Min Price: <span id="min_price_display">{{ min_price|default:"0" }}</span></span>
+            <span>Max Price: <span id="max_price_display">{{ max_price|default:"1000000" }}</span></span>
 
-            <label for="max_price">Max Price:</label>
-            <input type="range" name="max_price" id="max_price" min="0" max="5000000" value="{{ max_price|default:10000 }}">
-            <span id="max_price_display">{{ max_price|default:"10000" }}</span>
+            <!-- Hidden inputs to hold values for form submission -->
+            <input type="hidden" name="min_price" id="min_price" value="{{ min_price|default:0 }}">
+            <input type="hidden" name="max_price" id="max_price" value="{{ max_price|default:1000000 }}">
         </div>
 
         <!-- Submit filter button -->
@@ -44,41 +46,71 @@
 <div class="search-results">
     <!-- Loop through all products -->
         <div class="wrapper">
-			{% for product in products %}
+            {% for product in products %}
             <div class="single-card">
                 <div class="img-area">
                     <img src="{{ product.product_img }}" alt="{{ product.Title }}">
                     <div class="overlay">
                         <a href="{% url 'cart' %}"><button class="add-to-cart">Add to Cart</button></a>
-						<a href="{% url 'product_details' product.Product_ID %}"><button class="view-details">View Details</button></a>
+                        <a href="{% url 'product_details' product.Product_ID %}"><button class="view-details">View Details</button></a>
                     </div>
                 </div>
                 <div class="card-info">
-                    <h3 class ='product-title'>{{ product.Title }}</h3>
+                    <h3 class="product-title">{{ product.Title }}</h3>
                     <p class="price">BDT {{ product.Price }}</p>
                 </div>
             </div>
-			{% empty %}
-			<p>No products found matching your criteria.</p>
+            {% empty %}
+            <p>No products found matching your criteria.</p>
         </div>
     {% endfor %}
 </div>
 
-    
 {% endblock %}
 
-
-
 {% block extra_js %}
-<script>
-    // Update the price display when sliders are adjusted
-    document.getElementById('min_price').addEventListener('input', function() {
-        document.getElementById('min_price_display').textContent = this.value;
-    });
+    <!-- Include noUiSlider JS library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/15.5.1/nouislider.min.js"></script>
 
-    document.getElementById('max_price').addEventListener('input', function() {
-        document.getElementById('max_price_display').textContent = this.value;
-    });
-</script>
+    <script>
+        // Initialize the noUiSlider
+        document.addEventListener('DOMContentLoaded', function () {
+            var slider = document.getElementById('price-range-slider');
 
+            noUiSlider.create(slider, {
+                start: [{{ min_price|default:0 }}, {{ max_price|default:1000000 }}], // Initial values
+                connect: true, // Link the handles together
+                range: {
+                    'min': 0,
+                    'max': 1000000
+                },
+                step: 1000, // Increment by 1000
+                format: {
+                    to: function (value) {
+                        return Math.round(value);
+                    },
+                    from: function (value) {
+                        return Number(value);
+                    }
+                }
+            });
+
+            var minPriceDisplay = document.getElementById('min_price_display');
+            var maxPriceDisplay = document.getElementById('max_price_display');
+            var minPriceInput = document.getElementById('min_price');
+            var maxPriceInput = document.getElementById('max_price');
+
+            // Update the display and hidden inputs when the slider is adjusted
+            slider.noUiSlider.on('update', function (values, handle) {
+                var minPrice = values[0];
+                var maxPrice = values[1];
+
+                minPriceDisplay.innerHTML = minPrice;
+                maxPriceDisplay.innerHTML = maxPrice;
+
+                minPriceInput.value = minPrice;
+                maxPriceInput.value = maxPrice;
+            });
+        });
+    </script>
 {% endblock %}
