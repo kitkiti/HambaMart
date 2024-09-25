@@ -1,7 +1,8 @@
 from django.db import models
 from apps.products.models import Product
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
-from django.contrib.auth.models import User  # Importing User
+
+
 # Create your models here.
 
 class CustomerManager(BaseUserManager):
@@ -63,22 +64,12 @@ class Cart(models.Model):
         db_table = 'cart'
         unique_together = (('Cart_ID', 'CustomerID'),)
 
-from django.conf import settings  # Import settings to use AUTH_USER_MODEL
-
-
 class CartProduct(models.Model):
-    # No need to define id as AutoField, Django will automatically create it
-    Product_ID = models.ForeignKey(Product, on_delete=models.CASCADE, db_column='ProductID', related_name='cart_products')  # Product reference with related_name
-    CustomerID = models.ForeignKey(Customer, on_delete=models.CASCADE, db_column='CustomerID')  # Renamed field for clarity
-    Cart_ID = models.ForeignKey(Cart, on_delete=models.CASCADE, db_column='CartID')  # Renamed field for clarity
-    quantity = models.PositiveIntegerField(default=1)  # Quantity of the product
-
-    # Use the settings.AUTH_USER_MODEL to refer to the correct user model
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='cart_products')  # User reference with related_name
-
-    def __str__(self):
-        return f"{self.product.name} (x{self.quantity})"
-
+    id = models.AutoField(primary_key=True)
+    Product_ID = models.ForeignKey(Product, on_delete=models.CASCADE, db_column='Product_ID')
+    CustomerID = models.ForeignKey(Customer, on_delete=models.CASCADE, db_column='Customer_ID')
+    Cart_ID = models.ForeignKey(Cart, on_delete=models.CASCADE, db_column='Cart_ID')
+    Quantity = models.IntegerField(blank=True, null=True)
 
     class Meta:
         managed = False

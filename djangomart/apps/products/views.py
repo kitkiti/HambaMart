@@ -1,10 +1,11 @@
-from django.shortcuts import redirect, render, get_object_or_404
+# Create your views here.
+# products/views.py
+from django.shortcuts import render, get_object_or_404, redirect
 from django.db.models import Q
-from apps.customers.models import Cart, CartProduct
 from apps.products.models import Product, ProductTags
-from django.views.decorators.http import require_POST
-from django.contrib.auth.decorators import login_required
-
+from apps.products.models import Product
+from apps.products.forms import ProductForm
+from django.contrib import messages
 
 def product_search(request):
     search_query = request.GET.get('q', '')
@@ -38,27 +39,6 @@ def product_search(request):
     }
 
     return render(request, 'product_search.html', context)
-@login_required
-@require_POST
-def add_to_cart(request, product_id):
-    product = get_object_or_404(Product, Product_ID=product_id)
-    cart, created = Cart.objects.get_or_create(CustomerID=request.user)
-    
-    quantity = int(request.POST.get('quantity', 1))  # Get the quantity from the form, default to 1
-    cart_product, created = CartProduct.objects.get_or_create(
-        Product_ID=product,
-        CustomerID=request.user,
-        Cart_ID=cart,
-        defaults={'Quantity': quantity}  # Set the default quantity
-    )
-    
-    if not created:
-        cart_product.Quantity += quantity  # Update quantity if product is already in cart
-    cart_product.save()
-    
-    return redirect('cart_view')  # Redirect to cart view after adding
-
-
 def home(request):
     return render(request, 'home.html')
 
@@ -112,3 +92,21 @@ def search_and_edit_product(request):
         form = None  # If no form submitted yet, form remains None
 
     return render(request, 'search_edit_product.html', {'form': form, 'product': product})
+
+def product_delete_view(request):
+    if request.method == 'POST':
+        product_id = request.POST.get('product_id')
+        product = get_object_or_404(Product, Product_ID=product_id)
+
+        if 'delete' in request.POST:  # If the delete button is clicked
+            product.delete()
+            messages.success(request, 'Product deleted successfully!')
+            return redirect('product_delete')  # Redirect to the same page after deletion
+
+    else:
+        product_id = request.GET.get('product_id')  # Check if there's a search query
+        product = None
+        if product_id:
+            product = Product.objects.filter(Product_ID=product_id).first()
+
+    return render(request, 'delete_product.html', {'product': product})

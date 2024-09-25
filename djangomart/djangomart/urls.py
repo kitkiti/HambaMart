@@ -20,8 +20,6 @@ from django.urls import path, include #new
 
 from apps.products  import views as pviews
 from apps.customers import views as cviews
-from django.urls import path
-from apps.orders import views as order_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -41,11 +39,5 @@ urlpatterns = [
     path('delete_product/', pviews.deleteproduct_view, name='delete_product'),
     path('add_product/', pviews.add_product_view, name='add_product_view'),
     path('search-edit-product/', pviews.search_and_edit_product, name='search_and_edit_product'),
-
-    path('add_to_cart/<int:product_id>/', cviews.add_to_cart, name='add_to_cart'),
-    path('remove_from_cart/<int:cart_product_id>/', cviews.remove_from_cart, name='remove_from_cart'),
-    path('checkout/', order_views.checkout, name='checkout'),
-    path('process_payment/<int:order_id>/', order_views.process_payment, name='process_payment'),
-    #path('payment_success/', order_views.payment_success, name='payment_success'),
-    path('order_confirmation/<int:order_id>/', order_views.order_confirmation, name='order_confirmation'),
+    path('delete-product/', pviews.product_delete_view, name='product_delete'),
 ]
