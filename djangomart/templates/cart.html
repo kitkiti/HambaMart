@@ -8,7 +8,7 @@
 {% block content %}
 <h2>Your Cart</h2>
 
-{% if cart_products %}
+{% if cart_product %}
     <table>
         <thead>
             <tr>
@@ -19,7 +19,7 @@
             </tr>
         </thead>
         <tbody>
-            {% for item in cart_products %}
+            {% for item in cart_product %}
             <tr>
                 <td>{{ item.Product_ID.Title }}</td>
                 <td>{{ item.Quantity }}</td>
@@ -31,7 +31,8 @@
                 </td>
             </tr>
             {% endfor %}
-        </tbody>
+        </tbody>        
+        
     </table>
     
     <p><strong>Total Price: </strong>৳{{ total_price }}</p>

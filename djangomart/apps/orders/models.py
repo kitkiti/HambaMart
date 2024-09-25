@@ -14,16 +14,15 @@ class Orders(models.Model):
         managed = False
         db_table = 'orders'
 
+
 class OrderProduct(models.Model):
+    Order_ID = models.ForeignKey(Orders, on_delete=models.CASCADE)
+    Product_ID = models.ForeignKey(Product, on_delete=models.CASCADE)
+    product_quantity = models.IntegerField(default=1)
     id = models.AutoField(primary_key=True)
-    Product_ID = models.ForeignKey(Product, on_delete=models.RESTRICT, db_column='Product_ID')
-    Order_ID = models.ForeignKey(Orders, on_delete=models.CASCADE, db_column='Order_ID' )
-    product_quantity = models.IntegerField()
 
     class Meta:
-        managed = False
         db_table = 'order_product'
-        unique_together = (('Product_ID', 'Order_ID'),)
 
 class Payment(models.Model):
     P_ID = models.AutoField(primary_key=True)
@@ -33,5 +32,5 @@ class Payment(models.Model):
     Method = models.CharField(max_length=50, blank=True, null=True)
 
     class Meta:
-        managed = False
+        # managed = False
         db_table = 'payment'
