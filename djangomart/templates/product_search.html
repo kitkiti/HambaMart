@@ -1,10 +1,84 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %} Hambamart: Search Products {% endblock %}
+{% block title %} Hambamart: Search Results {% endblock %}
 
 
 {% block extra_css %} <link rel="stylesheet" href="{% static 'styles/product_search.css' %}"> {% endblock %}
 
 
-{% block content %} {% endblock %}
+{% block content %}
+	
+<div class="side-bar">
+    <h3>Filter Your Search</h3>
+
+    <!-- Tag filters (e.g., Categories) -->
+    <form method="GET" action="{% url 'product_search' %}">
+        <input type="hidden" name="q" value="{{ search_query }}"> <!-- Preserve search query -->
+
+        <div class="filter-section">
+            <h4>Categories</h4>
+            <label><input type="checkbox" name="categories" value="Cows" {% if 'Cows' in selected_categories %}checked{% endif %}> Cows</label><br>
+            <label><input type="checkbox" name="categories" value="Goats" {% if 'Goats' in selected_categories %}checked{% endif %}> Goats</label><br>
+            <label><input type="checkbox" name="categories" value="Tools & Equipment" {% if 'Tools & Equipment' in selected_categories %}checked{% endif %}> Tools & Equipment</label><br>
+            <label><input type="checkbox" name="categories" value="Animal Feed" {% if 'Animal Feed' in selected_categories %}checked{% endif %}> Animal Feed</label><br>
+        </div>
+
+        <!-- Price Filter -->
+        <div class="filter-section">
+            <h4>Price Filter</h4>
+            <label for="min_price">Min Price:</label>
+            <input type="range" name="min_price" id="min_price" min="0" max="5000000" value="{{ min_price|default:0 }}">
+            <span id="min_price_display">{{ min_price|default:"0" }}</span>
+
+            <label for="max_price">Max Price:</label>
+            <input type="range" name="max_price" id="max_price" min="0" max="5000000" value="{{ max_price|default:10000 }}">
+            <span id="max_price_display">{{ max_price|default:"10000" }}</span>
+        </div>
+
+        <!-- Submit filter button -->
+        <button type="submit" class="filter-btn">Filter</button>
+    </form>
+</div>
+
+<div class="search-results">
+    <!-- Loop through all products -->
+    {% for product in products %}
+        <div class="wrapper">
+            <div class="single-card">
+                <div class="img-area">
+                    <img src="{{ product.product_img }}" alt="{{ product.Title }}">
+                    <div class="overlay">
+                        <button class="add-to-cart">Add to Cart</button>
+                        <button class="view-details">View Details</button>
+                    </div>
+                </div>
+                <div class="card-info">
+                    <h3>{{ product.Title }}</h3>
+                    <p class="price">BDT {{ product.Price }}</p>
+                </div>
+            </div>
+        </div>
+    {% empty %}
+        <p>No products found matching your criteria.</p>
+    {% endfor %}
+</div>
+
+    
+{% endblock %}
+
+
+
+{% block extra_js %}
+<script>
+    // Update the price display when sliders are adjusted
+    document.getElementById('min_price').addEventListener('input', function() {
+        document.getElementById('min_price_display').textContent = this.value;
+    });
+
+    document.getElementById('max_price').addEventListener('input', function() {
+        document.getElementById('max_price_display').textContent = this.value;
+    });
+</script>
+
+{% endblock %}

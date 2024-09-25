@@ -16,7 +16,7 @@
                 <a href="{% url 'home' %}"><img src="{% static 'img/logo.png' %}" alt="Logo"></a>
             </div>
             <div class="search-bar">
-                <form action="/search" method="GET">
+                <form action="{% url 'product_search' %}" method="GET">
                     <input type="text" name="q" placeholder="Search products..." aria-label="Search products">
                     <button type="submit">
                         <img src="{% static 'img/magnifying-glass-icon.png' %}" alt="Search">
