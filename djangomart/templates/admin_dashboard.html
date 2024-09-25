@@ -4,7 +4,30 @@
 {% block title %} Admin Dashboard {% endblock %}
 
 
-{% block extra_css %} <link rel="stylesheet" href="{% static 'styles/admin_dashboard.css' %}"> {% endblock %}
+{% block extra_css %} <link rel="stylesheet" href="{%static '/styles/admin_dashboard.css'%}"> {% endblock %}
 
 
-{% block content %} {% endblock %}
+{% block content %}<div class="dashboard-container">
+    <h1>Welcome to Admin Dashboard</h1>
+
+    <!-- Quick Insight Section -->
+    <div class="quick-insight">
+        <h2>Quick insight</h2>
+        <div class="insight-buttons">
+            <button class="insight-btn">Sales: $10,4500</button>
+            <button class="insight-btn">Orders: 659</button>
+            <button class="insight-btn">Registered customers: 6,079</button>
+        </div>
+    </div>
+
+    <!-- Manage Products Section -->
+    <div class="manage-products">
+        <h2>Manage products</h2>
+        <div class="product-buttons">
+            <a href= "{% url 'add_product' %}"><button class="product-btn">Add product</button></a>
+            <a href= "{% url 'edit_product' %}"><button class="product-btn">Edit product</button></a>
+            <a href= "{% url 'delete_product' %}"><button class="product-btn">Remove product</button></a>
+        </div>
+    </div>
+</div>
+{% endblock %}

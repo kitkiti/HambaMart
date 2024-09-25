@@ -1,0 +1,44 @@
+.profile-container {
+  width: 90%;
+  margin: 50px 50px 50px 50px;
+  padding: 20px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+label {
+  display: block;
+  font-weight: bold;
+}
+
+input, select {
+  width: 30%;
+  padding: 5px;
+  border: 1px solid #ccc;
+}
+
+button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+.product-btn {
+  margin: 0 0 10px 60px;
+  background-color: rgb(53, 53, 53);
+  color: rgb(255, 255, 255);
+  border: 2px solid #333;
+  padding: 15px 30px;
+  font-size: 1.5em;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.product-btn:hover {
+  background-color: #000000;
+  border-color: #ffffff;
+}

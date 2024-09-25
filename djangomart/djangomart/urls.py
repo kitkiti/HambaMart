@@ -26,11 +26,13 @@ urlpatterns = [
     path('login/', cviews.custom_login_view, name='login'),
     path('base/', pviews.base, name='base'),
     path('signup/', cviews.signup_view, name='signup'),
-    path('my_account/', cviews.signup_view, name='account'),
+    path('my_account/', cviews.account_view, name='account'),
 
     path('admin_dashboard/', pviews.admin_view, name='admin_dashboard'),
     path('logout/', cviews.logout_view, name='logout'),
     path('cart/', cviews.cart_view, name='cart'),
     path('product/<int:product_id>/', pviews.product_details_view, name='product_details'),
-
+    path('add_product/', pviews.addproduct_view, name='add_product'),
+    path('edit_product/', pviews.editproduct_view, name='edit_product'),
+    path('delete_product/', pviews.deleteproduct_view, name='delete_product'),
 ]
