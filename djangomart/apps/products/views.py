@@ -5,7 +5,7 @@ from django.db.models import Q
 from apps.products.models import Product, ProductTags
 from apps.products.models import Product
 from apps.products.forms import ProductForm
-
+from django.contrib import messages
 
 def product_search(request):
     search_query = request.GET.get('q', '')
@@ -92,3 +92,21 @@ def search_and_edit_product(request):
         form = None  # If no form submitted yet, form remains None
 
     return render(request, 'search_edit_product.html', {'form': form, 'product': product})
+
+def product_delete_view(request):
+    if request.method == 'POST':
+        product_id = request.POST.get('product_id')
+        product = get_object_or_404(Product, Product_ID=product_id)
+
+        if 'delete' in request.POST:  # If the delete button is clicked
+            product.delete()
+            messages.success(request, 'Product deleted successfully!')
+            return redirect('product_delete')  # Redirect to the same page after deletion
+
+    else:
+        product_id = request.GET.get('product_id')  # Check if there's a search query
+        product = None
+        if product_id:
+            product = Product.objects.filter(Product_ID=product_id).first()
+
+    return render(request, 'delete_product.html', {'product': product})

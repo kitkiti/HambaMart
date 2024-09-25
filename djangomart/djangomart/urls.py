@@ -39,4 +39,5 @@ urlpatterns = [
     path('delete_product/', pviews.deleteproduct_view, name='delete_product'),
     path('add_product/', pviews.add_product_view, name='add_product_view'),
     path('search-edit-product/', pviews.search_and_edit_product, name='search_and_edit_product'),
+    path('delete-product/', pviews.product_delete_view, name='product_delete'),
 ]
