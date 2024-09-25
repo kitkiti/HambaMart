@@ -1,3 +1,4 @@
+
 """
 URL configuration for djangomart project.
 
@@ -34,7 +35,9 @@ urlpatterns = [
     path('product/<int:product_id>/', pviews.product_details_view, name='product_details'),
     path('search/', pviews.product_search, name='product_search'),
 
-    path('add_product/', pviews.addproduct_view, name='add_product'),
+    #path('addproduct/', pviews.addproduct_view, name='add_product'),
     path('edit_product/', pviews.editproduct_view, name='edit_product'),
     path('delete_product/', pviews.deleteproduct_view, name='delete_product'),
+
+    path('add_product/', pviews.add_product_view, name='add_product_view'),
 ]

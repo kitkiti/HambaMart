@@ -1,10 +1,10 @@
 # Create your views here.
 # products/views.py
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.db.models import Q
 from apps.products.models import Product, ProductTags
-
-
+from apps.products.models import Product
+from apps.products.forms import ProductForm
 
 
 def product_search(request):
@@ -60,4 +60,16 @@ def deleteproduct_view(request):
 def product_details_view(request, product_id):
     product = get_object_or_404(Product, pk=product_id)
     return render(request, 'product_details.html', {'product': product})
+
+
+def add_product_view(request):
+    if request.method == 'POST':
+        form = ProductForm(request.POST)
+        if form.is_valid():
+            form.save()  # This will save the product and associated tags
+            return redirect('admin_dashboard')  # Redirect to the product list or another page
+    else:
+        form= ProductForm()
+    return render(request, 'add_product.html', {'form': form})
+
 
