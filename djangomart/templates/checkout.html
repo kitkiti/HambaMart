@@ -3,10 +3,11 @@
 
 {% block title %} Cart {% endblock %}
 
-{% block extra_css %} <link rel="stylesheet" href="{% static 'styles/cart.css' %}"> {% endblock %}
+{% block extra_css %} <link rel="stylesheet" href="{% static 'styles/checkout.css' %}"> {% endblock %}
 
 {% block content %}
-<h2>Your Cart</h2>
+
+<h2>Checkout</h2>
 
 {% if cart_products %}
     <table>
@@ -15,7 +16,6 @@
                 <th>Product</th>
                 <th>Quantity</th>
                 <th>Price</th>
-                <th>Action</th>
             </tr>
         </thead>
         <tbody>
@@ -24,23 +24,18 @@
                 <td>{{ item.Product_ID.Title }}</td>
                 <td>{{ item.Quantity }}</td>
                 <td>৳{{ item.Product_ID.Price }}</td>
-                <td>
-                    <a href="{% url 'remove_from_cart' item.id %}">
-                        <button>Remove</button>
-                    </a>
-                </td>
             </tr>
             {% endfor %}
         </tbody>
     </table>
-    
+
     <p><strong>Total Price: </strong>৳{{ total_price }}</p>
-    
-    <!-- Proceed to Checkout button -->
-    <a href="{% url 'checkout' %}">
-        <button class="proceed-to-checkout">Proceed to Checkout</button>
-    </a>
+
+    <form method="POST">
+        {% csrf_token %}
+        <button type="submit">Confirm and Place Order</button>
+    </form>
 {% else %}
-    <p>Your cart is empty.</p>
+    <p>No items in your cart to checkout.</p>
 {% endif %}
 {% endblock %}
