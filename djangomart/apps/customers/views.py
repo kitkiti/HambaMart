@@ -14,7 +14,7 @@ from django.contrib.auth.decorators import login_required
 
 
 def add_to_cart(request, product_id):
-    
+
     customer = request.user  
     product = get_object_or_404(Product, pk=product_id)
     if product.Stock <= 0:
@@ -88,10 +88,12 @@ def custom_login_view(request):
 
     return render(request, 'login.html', {'form': form})
 
-def signup_view(request):
-    return render(request, 'signup.html')
 
 def account_view(request):
+    if not request.user.is_authenticated:
+        return redirect(f'/login/?next={request.path}')
+    if request.user.is_staff:
+        return redirect('admin_dashboard')
     return render(request, 'account.html')
 
 def logout_view(request):
