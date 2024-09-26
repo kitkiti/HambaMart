@@ -49,4 +49,5 @@ urlpatterns = [
     path('order_confirmation/<int:order_id>/', order_views.order_confirmation, name='order_confirmation'),
     # path('payment_success/', order_views.payment_success, name='payment_success'),
     path('product_delete/', pviews.product_delete_view, name='product_delete'),
+    path('payment-success/', order_views.payment_success, name='payment_success'),
 ]
