@@ -51,7 +51,7 @@
                 <div class="img-area">
                     <img src="{{ product.product_img }}" alt="{{ product.Title }}">
                     <div class="overlay">
-                        <a href="{% url 'cart' %}"><button class="add-to-cart">Add to Cart</button></a>
+                        <a href="{% url 'add_to_cart' product.Product_ID %}"><button class="add-to-cart">Add to Cart</button></a>
                         <a href="{% url 'product_details' product.Product_ID %}"><button class="view-details">View Details</button></a>
                     </div>
                 </div>

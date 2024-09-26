@@ -47,6 +47,10 @@ def base(request):
     return render(request, 'base.html')
 
 def admin_view(request):
+    if not request.user.is_authenticated:
+        return redirect(f'/login/?next={request.path}')
+    if not request.user.is_staff:
+        return redirect('home')
     return render(request, 'admin_dashboard.html')
 
 def deleteproduct_view(request):

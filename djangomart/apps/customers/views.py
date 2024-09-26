@@ -14,6 +14,10 @@ from django.contrib.auth.decorators import login_required
 
 
 def add_to_cart(request, product_id):
+    if not request.user.is_authenticated:
+        return redirect(f'/login/?next={request.path}')
+    if request.user.is_staff:
+        return redirect('home')
 
     customer = request.user  
     product = get_object_or_404(Product, pk=product_id)
@@ -44,6 +48,10 @@ def remove_from_cart(request, cart_product_id):
     return redirect('cart')
 
 def cart_view(request):
+    if not request.user.is_authenticated:
+        return redirect(f'/login/?next={request.path}')
+    if request.user.is_staff:
+        return redirect('home')
     cart = get_object_or_404(Cart, CustomerID=request.user)
     cart_products = CartProduct.objects.filter(Cart_ID=cart)
 
