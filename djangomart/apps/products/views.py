@@ -41,7 +41,8 @@ def product_search(request):
     return render(request, 'product_search.html', context)
 
 def home(request):
-    return render(request, 'home.html')
+    products = Product.objects.all()
+    return render(request, 'home.html', {'products': products})
 
 def base(request):
     return render(request, 'base.html')
