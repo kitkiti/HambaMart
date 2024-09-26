@@ -59,6 +59,8 @@ def cart_view(request):
 
 
 def custom_login_view(request):
+    if request.user.is_authenticated:
+        return redirect('home')
     if request.method == 'POST':
         form = AuthenticationForm(request, data=request.POST)
         if form.is_valid():
@@ -71,10 +73,13 @@ def custom_login_view(request):
                 login(request, user)
 
                 if isinstance(user, Customer):
-                    return redirect('home')  # Redirect to customer's home
+                    next_url = request.GET.get('next', 'home')   # Redirect to customer's home
                 elif isinstance(user, Admin):
-                    return redirect('admin_dashboard')  # Redirect to admin's dashboard
+                    next_url = request.GET.get('next', 'admin_dashboard')  # Redirect to admin's dashboard
+                else:
+                    next_url = 'home'  # Default to home for any other cases
 
+                return redirect(next_url)
             else:
                 messages.error(request, 'Invalid email or password.')
     else:
@@ -94,6 +99,8 @@ def logout_view(request):
     return redirect('home')  # Redirect to home page after logout
 
 def signup_view(request):
+    if request.user.is_authenticated:
+        return redirect('home')
     if request.method == 'POST':
         form = CustomerSignUpForm(request.POST)
         if form.is_valid():
