@@ -42,7 +42,7 @@ urlpatterns = [
     path('search-edit-product/', pviews.search_and_edit_product, name='search_and_edit_product'),
 
     path('add_to_cart/<int:product_id>/', cviews.add_to_cart, name='add_to_cart'),
-    path('remove_from_cart/<int:cart_product_id>/', cviews.remove_from_cart, name='remove_from_cart'),
+    path('remove_from_cart/<int:cart_id>/<int:product_id>/', cviews.remove_from_cart, name='remove_from_cart'),
 
     path('checkout/', order_views.checkout, name='checkout'),
     path('process_payment/<int:order_id>/', order_views.process_payment, name='process_payment'),

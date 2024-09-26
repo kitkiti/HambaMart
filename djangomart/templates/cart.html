@@ -8,7 +8,7 @@
 {% block content %}
 <h2>Your Cart</h2>
 
-{% if cart_product %}
+{% if cart_products %}
     <table>
         <thead>
             <tr>
@@ -19,13 +19,13 @@
             </tr>
         </thead>
         <tbody>
-            {% for item in cart_product %}
+            {% for item in cart_products %}
             <tr>
                 <td>{{ item.Product_ID.Title }}</td>
                 <td>{{ item.Quantity }}</td>
                 <td>৳{{ item.Product_ID.Price }}</td>
                 <td>
-                    <a href="{% url 'remove_from_cart' item.id %}">
+                    <a href="{% url 'remove_from_cart' item.Cart_ID.Cart_ID item.Product_ID.Product_ID %}">
                         <button>Remove</button>
                     </a>
                 </td>

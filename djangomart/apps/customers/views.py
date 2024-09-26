@@ -42,8 +42,8 @@ def add_to_cart(request, product_id):
 
     return redirect('cart')
 
-def remove_from_cart(request, cart_product_id):
-    cart_product = get_object_or_404(CartProduct, pk=cart_product.id)
+def remove_from_cart(request, cart_id, product_id):
+    cart_product = CartProduct.objects.filter(Cart_ID=cart_id, Product_ID=product_id)
     cart_product.delete()
     return redirect('cart')
 
