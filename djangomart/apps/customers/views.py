@@ -116,6 +116,7 @@ def signup_view(request):
         form = CustomerSignUpForm(request.POST)
         if form.is_valid():
             user= form.save()
+            messages.success(request, "You have successfully created an account.")
             return redirect('login')  # Redirect to a homepage or another page
     else:
         form = CustomerSignUpForm()

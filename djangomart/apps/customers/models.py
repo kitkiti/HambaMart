@@ -56,8 +56,6 @@ class Customer(AbstractBaseUser, PermissionsMixin):
         db_table = 'customer'
 
 
-
-
 class Cart(models.Model):
     Cart_ID = models.IntegerField(primary_key=True)  # Ensuring Cart_ID matches CustomerID
     CustomerID = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, db_column='CustomerID')
