@@ -16,8 +16,8 @@ class Orders(models.Model):
 
 
 class OrderProduct(models.Model):
-    Order_ID = models.ForeignKey(Orders, on_delete=models.CASCADE)
-    Product_ID = models.ForeignKey(Product, on_delete=models.CASCADE)
+    Order_ID = models.ForeignKey(Orders, on_delete=models.CASCADE, db_column='Order_ID')
+    Product_ID = models.ForeignKey(Product, on_delete=models.CASCADE, db_column='Product_ID')
     product_quantity = models.IntegerField(default=1)
     id = models.AutoField(primary_key=True)
 
