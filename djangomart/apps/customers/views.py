@@ -14,6 +14,7 @@ from django.contrib.auth.decorators import login_required
 
 
 def add_to_cart(request, product_id):
+    
     customer = request.user  
     product = get_object_or_404(Product, pk=product_id)
     if product.Stock <= 0:

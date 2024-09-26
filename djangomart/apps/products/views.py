@@ -53,6 +53,10 @@ def deleteproduct_view(request):
     return render(request, 'delete_product.html')
 
 def editproduct_view(request):
+    if not request.user.is_authenticated:
+        return redirect(f'/login/?next={request.path}')
+    if not request.user.is_staff:
+        return redirect('home')
     return render(request, 'search_edit_product.html')
 
 def product_details_view(request, product_id):
@@ -61,6 +65,10 @@ def product_details_view(request, product_id):
 
 
 def add_product_view(request):
+    if not request.user.is_authenticated:
+        return redirect(f'/login/?next={request.path}')
+    if not request.user.is_staff:
+        return redirect('home')
     if request.method== 'POST':
         form= ProductForm(request.POST)
         if form.is_valid():
@@ -71,6 +79,10 @@ def add_product_view(request):
     return render(request, 'add_product.html', {'form': form})
 
 def search_and_edit_product(request):
+    if not request.user.is_authenticated:
+        return redirect(f'/login/?next={request.path}')
+    if not request.user.is_staff:
+        return redirect('home')
     product = None  # Initialize product as None
     
     if request.method == 'POST':
