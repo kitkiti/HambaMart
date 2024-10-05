@@ -1,4 +1,4 @@
-/* General Body Styles */
+
 body {
   font-family: 'Arial', sans-serif;
   background-color: #f4f4f9;
@@ -10,7 +10,7 @@ body {
   height: 100vh;
 }
 
-/* Centering the content */
+
 h1 {
   text-align: center;
   font-size: 2.5em;
@@ -18,7 +18,7 @@ h1 {
   color: #333;
 }
 
-/* Form Container Styling */
+
 form {
   background-color: white;
   width: 100%;
@@ -28,7 +28,6 @@ form {
   border-radius: 10px;
 }
 
-/* Label Styles */
 label {
   display: block;
   font-weight: bold;
@@ -36,7 +35,7 @@ label {
   color: #555;
 }
 
-/* Input and Textarea Styles */
+
 input[type="text"],
 input[type="number"],
 input[type="file"],
@@ -61,7 +60,7 @@ select:focus {
   outline: none;
 }
 
-/* Button Styles */
+
 button.btn {
   display: inline-block;
   width: 100%;
@@ -79,7 +78,7 @@ button.btn:hover {
   background-color: #0056b3;
 }
 
-/* For Error or No Product Found Message */
+
 p {
   color: rgb(255, 255, 255);
   text-align: center;
@@ -87,7 +86,7 @@ p {
   margin-top: 20px;
 }
 
-/* Responsive Design */
+
 @media (max-width: 600px) {
   form {
       padding: 20px;

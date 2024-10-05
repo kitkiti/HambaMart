@@ -6,7 +6,7 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
 from django.utils import timezone
 from .models import Orders, OrderProduct, Payment
-from apps.customers.models import Cart, CartProduct  # Ensure you import these models
+from apps.customers.models import Cart, CartProduct 
 
 @login_required
 def checkout(request):
@@ -35,7 +35,7 @@ def checkout(request):
     context = {
         'cart_products': cart_products,
         'total_price': cart.total_price,
-        'customer': customer,  # Pass the customer for displaying address
+        'customer': customer,  
     }
 
     return render(request, 'checkout.html', context)
@@ -46,7 +46,7 @@ def process_payment(request, order_id):
     order = get_object_or_404(Orders, Order_ID=order_id)
 
     if request.method == 'POST':
-        payment_method = request.POST.get('payment_method')  # Get the selected payment method
+        payment_method = request.POST.get('payment_method') 
         payment = Payment.objects.create(
             CustomerID=request.user,
             Order_ID=order,
@@ -57,7 +57,7 @@ def process_payment(request, order_id):
         order.Status = 'Paid'
         order.save()
 
-        return redirect('payment_success')  # Redirect to a payment success page
+        return redirect('payment_success')  
 
     return render(request, 'payment.html', {'order': order})
 

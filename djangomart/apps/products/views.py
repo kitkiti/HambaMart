@@ -6,6 +6,22 @@ from apps.products.models import Product, ProductTags
 from django.views.decorators.http import require_POST
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from apps.customers.models import Customer
+
+def admin_dashboard(request):
+    if not request.user.is_authenticated:
+        return redirect(f'/login/?next={request.path}')
+    if not request.user.is_staff:
+        return redirect('home')
+    else:
+        total_products = Product.objects.count() 
+        total_customers = Customer.objects.count() 
+        context = {
+            'total_products': total_products,
+            'total_customers': total_customers,
+        }
+    
+        return render(request, 'admin_dashboard.html', context)
 
 def product_search(request):
     search_query = request.GET.get('q', '')
@@ -13,7 +29,7 @@ def product_search(request):
     max_price = request.GET.get('max_price')
     selected_categories = request.GET.getlist('categories')
 
-    # Base query for the products
+   
     products = Product.objects.all()
 
     if search_query:
@@ -32,7 +48,7 @@ def product_search(request):
         products = products.filter(producttags__Tag__in=selected_categories).distinct()
     context = {
         'products': products,
-        'search_query': search_query,  # So the search query can be shown in the template
+        'search_query': search_query,  
         'min_price': min_price,
         'max_price': max_price,
         'selected_categories':  selected_categories,
@@ -46,13 +62,6 @@ def home(request):
 
 def base(request):
     return render(request, 'base.html')
-
-def admin_view(request):
-    if not request.user.is_authenticated:
-        return redirect(f'/login/?next={request.path}')
-    if not request.user.is_staff:
-        return redirect('home')
-    return render(request, 'admin_dashboard.html')
 
 def deleteproduct_view(request):
     return render(request, 'delete_product.html')
@@ -77,8 +86,8 @@ def add_product_view(request):
     if request.method== 'POST':
         form= ProductForm(request.POST)
         if form.is_valid():
-            form.save()  # This will save the product and associated tags
-            return redirect('admin_dashboard')  # Redirect to the product list or another page
+            form.save()  
+            return redirect('admin_dashboard')  
     else:
         form= ProductForm()
     return render(request, 'add_product.html', {'form': form})
@@ -88,26 +97,26 @@ def search_and_edit_product(request):
         return redirect(f'/login/?next={request.path}')
     if not request.user.is_staff:
         return redirect('home')
-    product = None  # Initialize product as None
+    product = None  
     
     if request.method == 'POST':
-        product_id = request.POST.get('product_id')  # Get the product ID from the search form
+        product_id = request.POST.get('product_id')  
         try:
-            product = Product.objects.get(Product_ID=product_id)  # Fetch product by ID
+            product = Product.objects.get(Product_ID=product_id)  
         except Product.DoesNotExist:
-            product = None  # If the product doesn't exist, set to None
+            product = None 
 
         if product and 'edit_product' in request.POST:
-            # If the edit form is submitted
+            
             form = ProductForm(request.POST, instance=product)
             if form.is_valid():
-                form.save()  # Save changes
-                return redirect('search_and_edit_product')  # Redirect back to search and edit page
+                form.save() 
+                return redirect('search_and_edit_product')  
         else:
-            # If product exists but form is not submitted yet, pre-fill the form
+            
             form = ProductForm(instance=product)
     else:
-        form = None  # If no form submitted yet, form remains None
+        form = None  
 
     return render(request, 'search_edit_product.html', {'form': form, 'product': product})
 
@@ -117,13 +126,13 @@ def product_delete_view(request):
         product_id = request.POST.get('product_id')
         product = get_object_or_404(Product, Product_ID=product_id)
 
-        if 'delete' in request.POST:  # If the delete button is clicked
+        if 'delete' in request.POST: 
             product.delete()
             messages.success(request, 'Product deleted successfully!')
-            return redirect('deleteproduct_view')  # Redirect to the same page after deletion
+            return redirect('deleteproduct_view') 
 
     else:
-        product_id = request.GET.get('product_id')  # Check if there's a search query
+        product_id = request.GET.get('product_id') 
         product = None
         if product_id:
             product = Product.objects.filter(Product_ID=product_id).first()

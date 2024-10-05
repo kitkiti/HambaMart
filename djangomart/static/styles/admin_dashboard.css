@@ -1,4 +1,4 @@
-/* Container styling */
+
 .dashboard-container {
   text-align: center;
   margin: 50px auto;
@@ -6,13 +6,13 @@
   color: #333;
 }
 
-/* Title styling */
+
 h1 {
   font-size: 50px;
   margin-bottom: 30px;
 }
 
-/* Quick Insight Section */
+
 .quick-insight {
   margin-bottom: 40px;
 }
@@ -22,7 +22,7 @@ h2 {
   margin-bottom: 20px;
 }
 
-/* Button styling for insights */
+
 .insight-buttons {
   display: flex;
   justify-content: center;
@@ -43,7 +43,7 @@ h2 {
   background-color: #555;
 }
 
-/* Manage Products Section */
+
 .manage-products {
   margin-top: 30px;
 }
@@ -54,7 +54,7 @@ h2 {
   gap: 20px;
 }
 
-/* Button styling for product management */
+
 .product-btn {
   background-color: white;
   color: black;

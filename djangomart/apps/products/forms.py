@@ -10,7 +10,6 @@ class ProductForm(forms.ModelForm):
 
     def save(self, commit=True):
         product = super().save(commit)
-        # Save tags if provided
         tags_data = self.cleaned_data.get('tags')
         if tags_data:
             tags = [tag.strip() for tag in tags_data.split(',')]
