@@ -1,4 +1,4 @@
-/* General container styling */
+
 .signup-container {
   width: 100%;
   max-width: 400px;
@@ -9,21 +9,21 @@
   padding-top: 50px;
 }
 
-/* Title styling */
+
 h1 {
   font-size: 2em;
   margin-bottom: 30px;
   font-weight: bold;
 }
 
-/* Form styling */
+
 .signup-form {
   display: flex;
   flex-direction: column;
   gap: 15px;
 }
 
-/* Label styling */
+
 label {
   text-align: left;
   margin-bottom: 5px;
@@ -31,7 +31,7 @@ label {
   font-weight: normal;
 }
 
-/* Input field styling */
+
 input {
   padding: 10px;
   font-size: 1em;
@@ -45,7 +45,7 @@ input::placeholder {
   color: #ccc;
 }
 
-/* Button styling */
+
 .signup-btn {
   background-color: #4d6535;
   color: white;
@@ -61,7 +61,7 @@ input::placeholder {
   background-color: #3e522a;
 }
 
-/* Sign In Link */
+
 .signin-link {
   margin-top: 20px;
 }

@@ -1,14 +1,14 @@
-/* Center the products on the page and make them appear side by side */
+
 main .wrapper {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     gap: 20px;
     margin: 6% auto 0;
-    max-width: 1200px;
+    max-width: 100%;
 }
 
-/* Modernize the product card styling */
+
 .single-card {
     position: relative;
     width: 280px;
@@ -27,6 +27,9 @@ main .wrapper {
 }
 
 .single-card .product-title {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
     font-size: 20px;
     font-weight: bold;
     color: #333333;
@@ -51,7 +54,7 @@ main .img-area:hover img {
     transform: scale(1.1);
 }
 
-/* Modernize the overlay and buttons */
+
 .overlay {
     position: absolute;
     top: 0;
@@ -71,7 +74,7 @@ main .img-area:hover img {
     opacity: 1;
 }
 
-/* Modern button styling */
+
 .add-to-cart, .view-details {
     background-color: transparent;
     color: #fff;

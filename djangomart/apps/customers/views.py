@@ -4,14 +4,14 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib import messages
-from apps.customers.models import Customer  # Import your Customer model
+from apps.customers.models import Customer  
 from apps.products.models import Admin
-from apps.customers.forms import CustomerSignUpForm  # Import your Admin model
+from apps.customers.forms import CustomerSignUpForm  
 from apps.orders.models import OrderProduct, Orders
 from apps.products.models import Admin, Product
 from apps.customers.models import Cart, CartProduct, Customer
 from django.contrib.auth.decorators import login_required
-
+from apps.customers.forms import CustomerProfileForm
 
 def add_to_cart(request, product_id):
     if not request.user.is_authenticated:
@@ -42,8 +42,8 @@ def add_to_cart(request, product_id):
 
     return redirect('cart')
 
-def remove_from_cart(request, cart_product_id):
-    cart_product = get_object_or_404(CartProduct, pk=cart_product.id)
+def remove_from_cart(request, cart_id, product_id):
+    cart_product = CartProduct.objects.filter(Cart_ID=cart_id, Product_ID=product_id)
     cart_product.delete()
     return redirect('cart')
 
@@ -122,3 +122,19 @@ def signup_view(request):
         form = CustomerSignUpForm()
     
     return render(request, 'signup.html', {'form': form})
+
+
+
+@login_required
+def profile_view(request):
+    customer = Customer.objects.get(Email=request.user.Email)  # Adjust based on how you manage user sessions
+
+    if request.method == 'POST':
+        form = CustomerProfileForm(request.POST, instance=customer)
+        if form.is_valid():
+            form.save()
+            return redirect('account')  # Redirect to the profile page after saving
+    else:
+        form = CustomerProfileForm(instance=customer)
+
+    return render(request, 'account.html', {'form': form})

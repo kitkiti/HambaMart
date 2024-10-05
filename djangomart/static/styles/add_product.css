@@ -1,4 +1,4 @@
-/* Container for the form */
+
 .add-product-container {
   width: 100%;
   max-width: 600px;
@@ -10,28 +10,27 @@
   text-align: center;
 }
 
-/* Heading styling */
+
 .add-product-container h1 {
   margin-bottom: 30px;
   font-size: 2em;
   color: #333;
 }
 
-/* Form structure */
+
 .add-product-form {
   display: flex;
   flex-direction: column;
   gap: 20px;
 }
 
-/* Label styling */
+
 label {
   font-size: 1.1em;
   color: #333;
   text-align: left;
 }
 
-/* Input field styling */
 input[type="text"],
 input[type="number"],
 input[type="file"],
@@ -46,14 +45,14 @@ select {
 }
 
 
-/* Remove spinners in number input on Webkit browsers */
+
 input[type="number"]::-webkit-outer-spin-button,
 input[type="number"]::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
 
-/* Price input with currency symbol */
+
 .price-input {
   display: flex;
   align-items: center;
@@ -74,7 +73,7 @@ input[type="number"]::-webkit-inner-spin-button {
   border-bottom-left-radius: 0;
 }
 
-/* Button styling */
+
 .add-product-btn {
   padding: 15px;
   background-color: #4CAF50;
@@ -90,7 +89,7 @@ input[type="number"]::-webkit-inner-spin-button {
   background-color: #45a049;
 }
 
-/* Responsive styling */
+
 @media (max-width: 768px) {
   .add-product-container {
       padding: 20px;

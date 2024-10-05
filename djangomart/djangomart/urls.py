@@ -28,9 +28,9 @@ urlpatterns = [
     path('login/', cviews.custom_login_view, name='login'),
     path('base/', pviews.base, name='base'),
     path('signup/', cviews.signup_view, name='signup'),
-    path('my_account/', cviews.account_view, name='account'),
+    # path('my_account/', cviews.account_view, name='account'),
 
-    path('admin_dashboard/', pviews.admin_view, name='admin_dashboard'),
+    path('admin_dashboard/', pviews.admin_dashboard, name='admin_dashboard'),
     path('logout/', cviews.logout_view, name='logout'),
     path('cart/', cviews.cart_view, name='cart'),
     path('product/<int:product_id>/', pviews.product_details_view, name='product_details'),
@@ -42,11 +42,13 @@ urlpatterns = [
     path('search-edit-product/', pviews.search_and_edit_product, name='search_and_edit_product'),
 
     path('add_to_cart/<int:product_id>/', cviews.add_to_cart, name='add_to_cart'),
-    path('remove_from_cart/<int:cart_product_id>/', cviews.remove_from_cart, name='remove_from_cart'),
+    path('remove_from_cart/<int:cart_id>/<int:product_id>/', cviews.remove_from_cart, name='remove_from_cart'),
 
     path('checkout/', order_views.checkout, name='checkout'),
     path('process_payment/<int:order_id>/', order_views.process_payment, name='process_payment'),
     path('order_confirmation/<int:order_id>/', order_views.order_confirmation, name='order_confirmation'),
     # path('payment_success/', order_views.payment_success, name='payment_success'),
     path('product_delete/', pviews.product_delete_view, name='product_delete'),
+    path('account', cviews.profile_view, name='account'),
+    path('payment-success/', order_views.payment_success, name='payment_success'),
 ]

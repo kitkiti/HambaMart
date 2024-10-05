@@ -2,7 +2,6 @@ from django.db import models
 from apps.customers.models import Customer
 from apps.products.models import Product
 
-# Create your models here.
 class Orders(models.Model):
     Order_ID = models.AutoField(primary_key=True)
     Total_Price = models.DecimalField(max_digits=10, decimal_places=2)
@@ -16,8 +15,8 @@ class Orders(models.Model):
 
 
 class OrderProduct(models.Model):
-    Order_ID = models.ForeignKey(Orders, on_delete=models.CASCADE)
-    Product_ID = models.ForeignKey(Product, on_delete=models.CASCADE)
+    Order_ID = models.ForeignKey(Orders, on_delete=models.CASCADE, db_column='Order_ID')
+    Product_ID = models.ForeignKey(Product, on_delete=models.CASCADE, db_column='Product_ID')
     product_quantity = models.IntegerField(default=1)
     id = models.AutoField(primary_key=True)
 
@@ -32,5 +31,4 @@ class Payment(models.Model):
     Method = models.CharField(max_length=50, blank=True, null=True)
 
     class Meta:
-        # managed = False
         db_table = 'payment'

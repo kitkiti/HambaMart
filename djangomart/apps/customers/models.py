@@ -1,8 +1,8 @@
 from django.db import models
 from apps.products.models import Product
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
-from django.contrib.auth.models import User  # Importing User
-from django.conf import settings  # Import settings to use AUTH_USER_MODEL
+from django.contrib.auth.models import User
+from django.conf import settings
 from django.db.models.signals import pre_save
 from django.dispatch import receiver
 
